@@ -1,0 +1,13 @@
+{
+    "name": "tadlstats",
+    "description": "TADL Statistics Dashboard v2",
+    "website": "https://www.tadl.org/",
+    "require": {
+        "plugins": [
+            {
+                "name": "memcached",
+                "commands": ["memcached:create memcached-$APP", "memcached:link memcached-$APP $APP"]
+            }
+        ]
+    }
+}
