@@ -1,15 +1,22 @@
 <div class="main-sidebar">
     <div class="sidebar">
         <ul class="sidebar-menu">
-            <li class="header">LINKS</li>
-            <li class="active"><a href="#"><span>Link</span></a></li>
-            <li><a href="#"><span>Another Link</span></a></li>
-            <li class="treeview"><a href="/"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="#"> Link in level 2</a></li>
-                    <li><a href="#"> Link in level 2</a></li>
-                </ul>
-            </li>
+            <li class="header">LOCATIONS</li>
+            <li<% if request.path == (view_all_path or '/') %> class="active"<% end %>><a href="/view/all"><span>All Locations</span></a></li>
+            <li<% if request.path == view_eastbay_path %> class="active"<% end %>><a href="/view/eastbay"><span>East Bay</span></a></li>
+            <li<% if request.path == view_fifelake_path %> class="active"<% end %>><a href="/view/fifelake"><span>Fife Lake</span></a></li>
+            <li<% if request.path == view_interlochen_path %> class="active"<% end %>><a href="/view/interlochen"><span>Interlochen</span></a></li>
+            <li<% if request.path == view_kingsley_path %> class="active"<% end %>><a href="/view/kingsley"><span>Kingsley</span></a></li>
+            <li<% if request.path == view_peninsula_path %> class="active"<% end %>><a href="/view/peninsula"><span>Peninsula</span></a></li>
+            <li<% if request.path == view_traversecity_path %> class="active"<% end %>><a href="/view/traversecity"><span>Traverse City</span></a></li>
+            <li class="header">TYPES</li>
+            <li<% if request.path == view_collection_path %> class="active"<% end %>><a href="#"><span>Collection</span></a></li>
+            <li<% if request.path == view_circulation_path %> class="active"<% end %>><a href="#"><span>Circulation</span></a></li>
+            <li<% if request.path == view_wireless_path %> class="active"<% end %>><a href="#"><span>Wireless</span></a></li>
+            <li<% if request.path == view_pubcomp_path %> class="active"<% end %>><a href="#"><span>Public Computers</span></a></li>
+            <li<% if request.path == view_visitors_path %> class="active"<% end %>><a href="#"><span>Visitors</span></a></li>
+            <li<% if request.path == view_questions_path %> class="active"<% end %>><a href="#"><span>Reference Questions</span></a></li>
+            <span>
         </ul>
     </div>
 </div>
