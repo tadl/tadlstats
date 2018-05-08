@@ -1,5 +1,23 @@
+require "open-uri"
+require "csv"
+
 class ViewController < ApplicationController
     def all
+        url = "https://www.tadl.org/stats/data/circ-weekly.csv"
+        circ_weekly = open(url).read()
+        csv = CSV.parse(circ_weekly, :headers => false)
+        @location_hash = {}
+        #@temp_hash = {}
+        csv.each do |row|
+            # puts "row: " + row.to_s
+            # row: ["TADL-EBB", "2018-04-30", "629"]
+            location, date, count = row
+            #@temp_hash = { date: count }
+            #@location_hash[location].merge!(AARGGGHGHHHHH
+        end
+
+        #puts @location_hash.inspect
+            
         @graph1_data = {
             labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
             datasets: [
