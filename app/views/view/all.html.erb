@@ -1,6 +1,230 @@
 <div class="row">
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Computer Sessions</span>
+                <span class="info-box-number">19,172</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-archive"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Collection Size</span>
+                <span class="info-box-number">330,904</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Questions Answered</span>
+                <span class="info-box-number">37,258</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-bug"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Puppets Circulated</span>
+                <span class="info-box-number">477</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-xs-12">
-        <h2>Circulation</h2>
-        <%= line_chart @graph1_data, @line_graph_options %>
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Weekly Circulation</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <%= line_chart @graph1_data, @line_graph_options %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Wireless Sessions</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                graf
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Computer Use</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                graf
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">New Users</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                graf
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Circulation by Type</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                graf
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Circulation Stats</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                so far this year, 125,397 books, 85,592 children's books, 105,212 movies, 28,453 albums, 4,162 magazines , 16,352 audiobooks and 477 puppets circulated. 
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Collection Distribution</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                graf
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Collection Stats</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                 our collection contains 147,075 books, 76,607 children's books, 25,824 movies, 35,440 albums, 10,818 magazines, 10,774 audiobooks, and 24,366 other things in total.
+
+                 we've added 4,778 books, 2,242 children's books, 1,417 movies, 917 albums, 2,036 magazines, 437 audiobooks, 147 other things, and
+
+                 withdrawn 4,319 books, 2,484 children's books, 448 movies, 687 albums, 931 magazines, 715 audiobooks, 158 other things so far this year. 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Most Popular Books</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                
+                    The Midnight Line
+                        The Rooster Bar
+                            The Great Alone
+                                Hardcore Twenty Four
+                                    The Woman in the Window
+                                        Count to Ten
+                                            The Fallen
+                                                Accidental Heroes
+                                                    Red Alert
+                                                        The Sixth Day
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Most Popular Movies</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                
+                    Wonder Woman
+                        The Mountain Between Us
+                            Three Billboards Outside Ebbing, Missouri
+                                Wonder
+                                    The Shape of Water
+                                        Home Again
+                                            Jumanji
+                                                Victoria & Abdul
+                                                    Thor
+                                                        Coco
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Most Popular Music</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                
+                    Now Thats What I Call Music
+                        Grammy 2018 Nominees
+                            2017 the Best of the Year
+                                Odyssey
+                                    The Greatest Showman
+                                        Evolve
+                                            Now Thats What I Call Music
+                                                Camila
+                                                    Songs of Experience
+                                                        Moana
+
+            </div>
+        </div>
     </div>
 </div>
