@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <%= line_chart @graph1_data, @line_graph_options %>
+                <%= line_chart @circ_graph, @line_graph_options %>
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="box-body">
-                graf
+                <%= doughnut_chart @circ_type_graph %>
             </div>
         </div>
     </div>
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div class="box-body">
-                graf
+                <%= doughnut_chart @collection_dist_graph %>
             </div>
         </div>
     </div>
