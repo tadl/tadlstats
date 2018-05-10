@@ -16,3 +16,21 @@
     bottom: 0;
     overflow: auto;
 }
+.emphasize {
+    font-size: 20px;
+    font-weight: bold;
+}
+.cover-image {
+    max-width: 60px;
+}
+.abstract {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+.abstract > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

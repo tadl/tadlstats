@@ -168,4 +168,23 @@ class ViewController < ApplicationController
 
     def traversecity
     end
+
+    def collection
+    end
+
+    def circulation
+    end
+
+    def wireless
+    end
+
+    def pubcomp
+    end
+
+    def visitors
+    end
+
+    def questions
+    end
+
 end
