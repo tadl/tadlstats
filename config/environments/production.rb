@@ -27,5 +27,5 @@ Rails.application.configure do
                     :socket_failure_delay => 0.2
                     }
 
-  config.active_record.dump_schema_after_migration = false
+  #config.active_record.dump_schema_after_migration = false
 end
