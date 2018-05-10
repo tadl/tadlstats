@@ -81,6 +81,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    dalli (2.7.8)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
@@ -221,6 +222,7 @@ DEPENDENCIES
   chartjs-ror
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dalli
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
