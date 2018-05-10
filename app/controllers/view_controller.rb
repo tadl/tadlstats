@@ -73,7 +73,72 @@ class ViewController < ApplicationController
             ]
         }
 
-        @line_graph_options = {
+        @wireless_graph = {
+            labels: ["January", "February", "June", "October"],
+            datasets: [
+                {
+                    label: "Traverse City",
+                    backgroundColor: "rgba(57,106,177,0.5)",
+                    borderColor: "rgba(57,106,177,1)",
+                    data: [1000, 1500, 1200, 1800],
+                    fill: 'origin',
+                },
+                {
+                    label: "East Bay",
+                    backgroundColor: "rgba(218,124,48,0.5)",
+                    borderColor: "rgba(218,124,48,1)",
+                    data: [3800, 3100, 2400, 2800],
+                    fill: '-1',
+                },
+                {
+                    label: "Fife Lake",
+                    backgroundColor: "rgba(62,150,81,0.5)",
+                    borderColor: "rgba(62,150,81,1)",
+                    data: [128, 256, 184, 204],
+                    fill: '-1',
+                },
+                {
+                    label: "Kingsley",
+                    backgroundColor: "rgba(204,37,41,0.5)",
+                    borderColor: "rgba(204,37,41,1)",
+                    data: [328, 542, 423, 593],
+                    fill: '-1',
+                },
+                {
+                    label: "Interlochen",
+                    backgroundColor: "rgba(83,81,84,0.5)",
+                    borderColor: "rgba(83,81,84,1)",
+                    data: [318, 233, 185, 423],
+                    fill: '-1',
+                },
+                {
+                    label: "Peninsula",
+                    backgroundColor: "rgba(107,76,154,0.5)",
+                    borderColor: "rgba(107,76,154,1)",
+                    data: [38, 23, 59, 29],
+                    fill: '-1',
+                },
+            ]
+        }
+
+        @circ_graph_options = {
+            width: 1200,
+            height: 480,
+            plugins: {
+                filler: {
+                    propogate: true
+                }
+            },
+            scales: {
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+            tooltips: {
+                mode: 'x'
+            }
+        }
+        @wireless_graph_options = {
             width: 1200,
             height: 480,
             plugins: {

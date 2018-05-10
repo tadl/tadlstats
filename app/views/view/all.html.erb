@@ -13,7 +13,7 @@
             <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Computer Sessions</span>
-                <span class="info-box-number">19,172</span>
+                <span class="info-box-number">19,172</span> this year
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <%= line_chart @circ_graph, @line_graph_options %>
+                <%= line_chart @circ_graph, @circ_graph_options %>
             </div>
         </div>
     </div>
@@ -61,7 +61,36 @@
                 </div>
             </div>
             <div class="box-body">
-                <img src="https://placehold.it/1200x480" style="width: 100%;height:auto;"/>
+                <%= line_chart @wireless_graph, @wireless_graph_options %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Wireless Sessions</span>
+                <span class="info-box-number">931,337</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Users Registered</span>
+                <span class="info-box-number">1,555</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Items Circulated</span>
+                <span class="info-box-number">468,670</span>
             </div>
         </div>
     </div>
@@ -97,20 +126,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-md-3">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Circulation by Type</h3>
-                <div class="box-tools">
-                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <%= doughnut_chart @circ_type_graph %>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-3">
+    <div class="col-xs-12 col-md-9">
         <div class="box box-primary box-solid" data-widget="box-widget">
             <div class="box-header">
                 <h3 class="box-title">Circulation Stats</h3>
@@ -126,6 +142,21 @@
     <div class="col-xs-12 col-md-3">
         <div class="box box-primary box-solid" data-widget="box-widget">
             <div class="box-header">
+                <h3 class="box-title">Circulation by Type</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <%= doughnut_chart @circ_type_graph %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
                 <h3 class="box-title">Collection Distribution</h3>
                 <div class="box-tools">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -136,7 +167,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-3">
+    <div class="col-xs-12 col-md-9">
         <div class="box box-primary box-solid" data-widget="box-widget">
             <div class="box-header">
                 <h3 class="box-title">Collection Stats</h3>
@@ -145,9 +176,71 @@
                 </div>
             </div>
             <div class="box-body">
-                 <p style="line-height: 20px;"><span class="emphasize">our collection</span> contains <span class="emphasize">147,075</span> books, <span class="emphasize">76,607</span> children's books, <span class="emphasize">25,824</span> movies, <span class="emphasize">35,440</span> albums, <span class="emphasize">10,818</span> magazines, <span class="emphasize">10,774</span> audiobooks, and <span class="emphasize">24,366</span> other things in total.</p>
-                 <p style="line-height: 20px;">we've added <span class="emphasize">4,778</span> books, <span class="emphasize">2,242</span> children's books, <span class="emphasize">1,417</span> movies, <span class="emphasize">917</span> albums, <span class="emphasize">2,036</span> magazines, <span class="emphasize">437</span> audiobooks, <span class="emphasize">147</span> other things, and</p>
-                 <p style="line-height: 20px;">withdrawn <span class="emphasize">4,319</span> books, <span class="emphasize">2,484</span> children's books, <span class="emphasize">448</span> movies, <span class="emphasize">687</span> albums, <span class="emphasize">931</span> magazines, <span class="emphasize">715</span> audiobooks, <span class="emphasize">158</span> other things so far this year.</p>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <caption>Cumulative collection statistics from January 1, 2018 to now.</caption>
+                        <thead>
+                            <tr>
+                                <td>Type</td>
+                                <td>Count</td>
+                                <td>Added</td>
+                                <td>Withdrawn</td>
+                                <td>% Change</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><!-- automate these, obviously! -->
+                                <td>Book</td>
+                                <td>147,075</td>
+                                <td>4,778</td>
+                                <td>4,319</td>
+                                <td>7% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
+                            </tr>
+                            <tr>
+                                <td>Children's Book</td>
+                                <td>76,607</td>
+                                <td>2,242</td>
+                                <td>2,484</td>
+                                <td>3% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
+                            </tr>
+                            <tr>
+                                <td>Videos</td>
+                                <td>25,824</td>
+                                <td>1,417</td>
+                                <td>448</td>
+                                <td>4% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
+                            </tr>
+                            <tr>
+                                <td>Compact Discs</td>
+                                <td>35,440</td>
+                                <td>917</td>
+                                <td>687</td>
+                                <td>2% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
+                            </tr>
+                            <tr>
+                                <td>Magazine</td>
+                                <td>10,818</td>
+                                <td>2,036</td>
+                                <td>931</td>
+                                <td>4% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
+                            </tr>
+                            <tr>
+                                <td>Audiobook</td>
+                                <td>10,774</td>
+                                <td>437</td>
+                                <td>715</td>
+                                <td>3% <i class="fa fa-caret-down"></i><span class="sr-only">decrease</span></td>
+                            </tr>
+                            <tr>
+                                <td>Other</td>
+                                <td>24,366</td>
+                                <td>147</td>
+                                <td>158</td>
+                                <td>1% <i class="fa fa-caret-down"></i><span class="sr-only">decrease</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -229,6 +322,67 @@
                     </div>
                 </div><!-- end media item -->
 
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+
             </div>
         </div>
     </div>
@@ -243,16 +397,126 @@
             </div>
             <div class="box-body">
                 
-                    Wonder Woman
-                        The Mountain Between Us
-                            Three Billboards Outside Ebbing, Missouri
-                                Wonder
-                                    The Shape of Water
-                                        Home Again
-                                            Jumanji
-                                                Victoria & Abdul
-                                                    Thor
-                                                        Coco
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
 
             </div>
         </div>
@@ -268,16 +532,126 @@
             </div>
             <div class="box-body">
                 
-                    Now Thats What I Call Music
-                        Grammy 2018 Nominees
-                            2017 the Best of the Year
-                                Odyssey
-                                    The Greatest Showman
-                                        Evolve
-                                            Now Thats What I Call Music
-                                                Camila
-                                                    Songs of Experience
-                                                        Moana
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
+                <div class="media"><!-- media item -->
+                    <div class="media-left">
+                        <a href="https://catalog.tadl.org/main/details?id=">
+                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
+                        <p><strong>Author</strong>, Year</p>
+                        <p class="abstract"><span>Abstract</span></p>
+                    </div>
+                </div><!-- end media item -->
 
             </div>
         </div>
