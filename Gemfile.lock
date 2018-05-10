@@ -80,9 +80,13 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    dotenv (0.7.0)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
+    foreman (0.64.0)
+      dotenv (~> 0.7.0)
+      thor (>= 0.13.6)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.0.1)
@@ -215,6 +219,7 @@ DEPENDENCIES
   chartjs-ror
   chromedriver-helper
   coffee-rails (~> 4.2)
+  foreman
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
