@@ -25,9 +25,8 @@ class ViewController < ApplicationController
             @circ_hash[location].push(count)
         end
 
-        @foo = Rails.cache.read("books")
+        @foo = Rails.cache.read("books")  # cool this works
 
-        puts @foo.inspect
 
         @circ_graph = {
             labels: @circ_hash['circdates'],
