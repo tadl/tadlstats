@@ -10,8 +10,12 @@ Rails.application.configure do
   config.assets.digest = true
 
   config.force_ssl = true
+
   config.log_level = :debug
-  config.log_tags = [ :request_id, :subdomain, :uuid ]
+  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.log_tags  = [ :request_id ]
+  config.logger    = ActiveSupport::TaggedLogging.new(logger)
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.perform_caching = false
