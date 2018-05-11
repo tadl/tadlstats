@@ -4,9 +4,9 @@ require "csv"
 class ViewController < ApplicationController
     def all
 
-        url = "https://www.tadl.org/stats/data/circ-weekly.csv"
-        circ_weekly = open(url).read()
-        csv = CSV.parse(circ_weekly, :headers => false)
+        circ_url = "https://www.tadl.org/stats/data/circ-weekly.csv"
+        circ_weekly = open(circ_url).read()
+        circ_csv = CSV.parse(circ_weekly, :headers => false)
 
         @circ_hash = Hash.new
         @circ_hash['TADL-WOOD'] = Array.new
@@ -17,13 +17,17 @@ class ViewController < ApplicationController
         @circ_hash['TADL-PCL'] = Array.new
         @circ_hash['circdates'] = Array.new
 
-        csv.each do |row|
+        circ_csv.each do |row|
             location, date, count = row
             if location == "TADL-WOOD"
                 @circ_hash['circdates'].push(date)
             end
             @circ_hash[location].push(count)
         end
+
+        @foo = Rails.cache.read("books")
+
+        puts @foo.inspect
 
         @circ_graph = {
             labels: @circ_hash['circdates'],
