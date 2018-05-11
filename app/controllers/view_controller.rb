@@ -3,9 +3,11 @@ require "csv"
 
 class ViewController < ApplicationController
     def all
+
         url = "https://www.tadl.org/stats/data/circ-weekly.csv"
         circ_weekly = open(url).read()
         csv = CSV.parse(circ_weekly, :headers => false)
+
         @circ_hash = Hash.new
         @circ_hash['TADL-WOOD'] = Array.new
         @circ_hash['TADL-EBB'] = Array.new
@@ -14,15 +16,13 @@ class ViewController < ApplicationController
         @circ_hash['TADL-IPL'] = Array.new
         @circ_hash['TADL-PCL'] = Array.new
         @circ_hash['circdates'] = Array.new
+
         csv.each do |row|
             location, date, count = row
-
             if location == "TADL-WOOD"
                 @circ_hash['circdates'].push(date)
             end
-
             @circ_hash[location].push(count)
-
         end
 
         @circ_graph = {
@@ -102,6 +102,35 @@ class ViewController < ApplicationController
                 },
             ]
         }
+        @circ_graph_options = {
+            width: 1200,
+            height: 480,
+            plugins: {
+                filler: {
+                    propogate: true
+                }
+            },
+            scales: {
+                yAxes: [{
+                    stacked: true
+                }],
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit: 'month',
+                        displayFormats: {
+                            month: 'MMM YY'
+                        }
+                    },
+                    distribution: 'series'
+                }]
+            },
+            tooltips: {
+                mode: 'index',
+                axis: 'x',
+                intersect: false
+            }
+        }
 
         @collection_movement_graph = {
             labels: ["Book", "Children's Book", "Video", "Compact Disc", "Magazine", "Audiobook"],
@@ -134,7 +163,6 @@ class ViewController < ApplicationController
                 }
             ]
         }
-
         @collection_movement_graph_options = {
             scale: {
                 ticks: {
@@ -227,27 +255,6 @@ class ViewController < ApplicationController
                     pointStyle: 'rectRounded',
                 },
             ]
-        }
-
-        @circ_graph_options = {
-            width: 1200,
-            height: 480,
-            plugins: {
-                filler: {
-                    propogate: true
-                }
-            },
-            scales: {
-                yAxes: [{
-                    stacked: true
-                }]
-            },
-            devicePixelRatio: 1,
-            tooltips: {
-                mode: 'index',
-                axis: 'x',
-                intersect: false
-            }
         }
         @wireless_graph_options = {
             width: 1200,

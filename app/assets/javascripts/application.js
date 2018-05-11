@@ -14,6 +14,7 @@
 //= require activestorage
 //= require jquery
 //= require jquery_ujs
+//= require slimScroll
 //= require turbolinks
 //= require bootstrap
 //= require Chart.bundle.min
