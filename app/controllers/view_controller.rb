@@ -34,6 +34,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(57,106,177,1)",
                     data: @circ_hash['TADL-WOOD'],
                     fill: 'origin',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "East Bay",
@@ -41,6 +46,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(218,124,48,1)",
                     data: @circ_hash['TADL-EBB'],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Fife Lake",
@@ -48,6 +58,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(62,150,81,1)",
                     data: @circ_hash['TADL-FLPL'],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Kingsley",
@@ -55,6 +70,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(204,37,41,1)",
                     data: @circ_hash['TADL-KBL'],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Interlochen",
@@ -62,6 +82,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(83,81,84,1)",
                     data: @circ_hash['TADL-IPL'],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Peninsula",
@@ -69,8 +94,61 @@ class ViewController < ApplicationController
                     borderColor: "rgba(107,76,154,1)",
                     data: @circ_hash['TADL-PCL'],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
             ]
+        }
+
+        @collection_movement_graph = {
+            labels: ["Book", "Children's Book", "Video", "Compact Disc", "Magazine", "Audiobook"],
+            datasets: [
+                {
+                    label: "Additions",
+                    data: [4788, 2242, 1417, 917, 2036, 437],
+                    backgroundColor: "rgba(62,150,81,0.5)",
+                    borderColor: "rgba(62,150,81,1)",
+                    pointRadius: 3,
+                    pointHitRadius: 8,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
+                    fill: false,
+                    radius: 6,
+                },
+                {
+                    label: "Withdrawls",
+                    data: [4319, 2484, 448, 687, 931, 715],
+                    backgroundColor: "rgba(204,37,41,0.5)",
+                    borderColor: "rgba(204,37,41,1)",
+                    pointRadius: 3,
+                    pointHitRadius: 8,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
+                    fill: false,
+                    radius: 6,
+                }
+            ]
+        }
+
+        @collection_movement_graph_options = {
+            scale: {
+                ticks: {
+                    min: 0,
+                    max: 5000,
+                    stepSize: 1000
+                }
+            },
+            tooltips: {
+                mode: 'index',
+                axis: 'x',
+                intersect: true,
+                displayColors: false
+            }
         }
 
         @wireless_graph = {
@@ -82,6 +160,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(57,106,177,1)",
                     data: [1000, 1500, 1200, 1800],
                     fill: 'origin',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "East Bay",
@@ -89,6 +172,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(218,124,48,1)",
                     data: [3800, 3100, 2400, 2800],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Fife Lake",
@@ -96,6 +184,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(62,150,81,1)",
                     data: [128, 256, 184, 204],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Kingsley",
@@ -103,6 +196,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(204,37,41,1)",
                     data: [328, 542, 423, 593],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Interlochen",
@@ -110,6 +208,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(83,81,84,1)",
                     data: [318, 233, 185, 423],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
                 {
                     label: "Peninsula",
@@ -117,6 +220,11 @@ class ViewController < ApplicationController
                     borderColor: "rgba(107,76,154,1)",
                     data: [38, 23, 59, 29],
                     fill: '-1',
+                    pointRadius: 2,
+                    pointHitRadius: 1,
+                    pointHoverRadius: 5,
+                    pointBorderWidth: 1,
+                    pointStyle: 'rectRounded',
                 },
             ]
         }
@@ -134,8 +242,11 @@ class ViewController < ApplicationController
                     stacked: true
                 }]
             },
+            devicePixelRatio: 1,
             tooltips: {
-                mode: 'x'
+                mode: 'index',
+                axis: 'x',
+                intersect: false
             }
         }
         @wireless_graph_options = {
@@ -152,7 +263,9 @@ class ViewController < ApplicationController
                 }]
             },
             tooltips: {
-                mode: 'x'
+                mode: 'index',
+                axis: 'x',
+                intersect: false
             }
         }
 

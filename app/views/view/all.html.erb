@@ -198,7 +198,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-9">
+    <div class="col-xs-12 col-md-6">
         <div class="box box-primary box-solid" data-widget="box-widget">
             <div class="box-header">
                 <h3 class="box-title">Collection Stats</h3>
@@ -272,6 +272,19 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Collection Movement</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <%= radar_chart @collection_movement_graph, @collection_movement_graph_options %>
             </div>
         </div>
     </div>
