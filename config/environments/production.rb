@@ -6,19 +6,17 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.assets.js_compressor = :uglifier
-
   config.assets.compile = false
   config.assets.digest = true
 
   config.force_ssl = true
   config.log_level = :debug
-  config.log_tags = [ :request_id ]
+  config.log_tags = [ :request_id, :subdomain, :uuid ]
+  config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.perform_caching = false
 
   config.i18n.fallbacks = true
-
-  config.log_formatter = ::Logger::Formatter.new
 
   config.cache_store = :dalli_store,
                     (ENV["MEMCACHED_URL"] || ""),
