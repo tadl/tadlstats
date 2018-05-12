@@ -38,6 +38,6 @@ task :update_toptenlists => :environment do
         Rails.cache.write(key, topten[key])
 
     end
-    Rails.cache.write('last_updated', Time.now)
+    Rails.cache.write('lists_updated', Time.now)
 
 end
