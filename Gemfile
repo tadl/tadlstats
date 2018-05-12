@@ -21,6 +21,8 @@ gem 'mini_magick', '~> 4.8'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-assets-slimScroll', source: 'https://rails-assets.org'
+gem 'config'
+gem 'dotenv'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
