@@ -130,7 +130,9 @@ class ViewController < ApplicationController
                 mode: 'index',
                 axis: 'x',
                 intersect: false
-            }
+            },
+            responsive: true,
+            maintainAspectRatio: false
         }
 
         @collection_movement_graph = {
@@ -274,7 +276,9 @@ class ViewController < ApplicationController
                 mode: 'index',
                 axis: 'x',
                 intersect: false
-            }
+            },
+            responsive: true,
+            maintainAspectRatio: false
         }
 
         @circ_type_graph = {
