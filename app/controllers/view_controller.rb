@@ -4,9 +4,7 @@ require "csv"
 class ViewController < ApplicationController
     def all
 
-        circ_url = "https://www.tadl.org/stats/data/circ-weekly.csv"
-        circ_weekly = open(circ_url).read()
-        circ_csv = CSV.parse(circ_weekly, :headers => false)
+        circ_csv = CSV.parse(open(Settings.circ_weekly_url).read(), :headers => false)
 
         @circ_hash = Hash.new
         @circ_hash['TADL-WOOD'] = Array.new

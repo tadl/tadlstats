@@ -17,6 +17,8 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Dotenv::Railtie.load
+
 module Tadlstats
   class Application < Rails::Application
     config.load_defaults 5.2

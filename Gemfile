@@ -5,6 +5,8 @@ ruby '2.5.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'unicorn'
+gem 'config'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
@@ -21,8 +23,6 @@ gem 'mini_magick', '~> 4.8'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-assets-slimScroll', source: 'https://rails-assets.org'
-gem 'config'
-gem 'dotenv'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
