@@ -1,0 +1,49 @@
+system_shortname: "TADL"
+system_longname: "Traverse Area District Library"
+circ_weekly_url: "https://www.tadl.org/stats/data/circ-weekly.csv"
+circ_by_type_ytd_url: "https://www.tadl.org/stats/data/circ-by-type-ytd.csv"
+collection_size_url: "https://www.tadl.org/stats/data/collection-size.csv"
+copies_added_ytd_url: "https://www.tadl.org/stats/data/copies-added-ytd.csv"
+copies_withdrawn_ytd_url: "https://www.tadl.org/stats/data/copies-withdrawn-ytd.csv"
+newusers_weekly_url: "https://www.tadl.org/stats/data/newusers-weekly.csv"
+newusers_ytd_url: "https://www.tadl.org/stats/data/newusers-ytd.csv"
+pubcomp_weekly_url: "https://www.tadl.org/stats/data/pubcomp-weekly.csv"
+pubcomp_ytd_url: "https://www.tadl.org/stats/data/pubcomp-ytd.csv"
+soft_stat_questions_ytd_url: "https://www.tadl.org/stats/data/soft-stat-questions-ytd.csv"
+top10books_url: "https://www.tadl.org/stats/data/top10books.csv"
+top10movies_url: "https://www.tadl.org/stats/data/top10movies.csv"
+top10music_url: "https://www.tadl.org/stats/data/top10music.csv"
+wireless_weekly_url: "https://www.tadl.org/stats/data/wireless-weekly.csv"
+wireless_ytd_url: "https://www.tadl.org/stats/data/wireless-ytd.csv"
+multi_location: true
+locations:
+  - name: "tcl"
+    short_name: "Woodmere"
+    long_name: "Traverse City Library"
+    evergreen_name: "TADL-WOOD"
+    evergreen_id: 23
+
+  - name: "ebb"
+    short_name: "East Bay"
+    long_name: "East Bay Branch Library"
+    evergreen_name: "TADL-EBB"
+    evergreen_id: 23
+
+  - name: "flpl"
+    short_name: "Fife Lake"
+    long_name: "Fife Lake Public Library"
+    evergreen_name: "TADL-FLPL"
+    evergreen_id: 23
+
+  - name: "ipl"
+    short_name: "Interlochen"
+    long_name: "Interlochen Public Library"
+    evergreen_name: "TADL-IPL"
+    evergreen_id: 23
+
+  - name: "kbl"
+    short_name: "Kingsley"
+    long_name: "Kingsley Branch Library"
+    evergreen_name: "TADL-KBL"
+    evergreen_id: 23
+
