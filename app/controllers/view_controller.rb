@@ -10,11 +10,7 @@ class ViewController < ApplicationController
         @circ_graph[:datasets] = Array.new
         Settings.locations.each do |location|
             loc = Hash.new
-            if Settings.locations.first == location
-                fill = "origin"
-            else
-                fill = "-1"
-            end
+            fill = (Settings.locations.first == location)? "origin" : "-1"
             loc = {
                 label: location.short_name,
                 backgroundColor: location.background_color,
