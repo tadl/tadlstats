@@ -2,8 +2,8 @@ require "open-uri"
 require "csv"
 
 class ViewController < ApplicationController
-    def all
 
+    def all
         @circ_hash = Rails.cache.read('circ_graph')
         @circ_graph = Hash.new
         @circ_graph[:labels] = @circ_hash['circdates']
@@ -29,31 +29,12 @@ class ViewController < ApplicationController
         @circ_graph_options = {
             width: 1200,
             height: 480,
-            plugins: {
-                filler: {
-                    propogate: true
-                }
-            },
+            plugins: { filler: { propogate: true } },
             scales: {
-                yAxes: [{
-                    stacked: true
-                }],
-                xAxes: [{
-                    type: 'time',
-                    time: {
-                        unit: 'month',
-                        displayFormats: {
-                            month: 'MMM YY'
-                        }
-                    },
-                    distribution: 'series'
-                }]
+                yAxes: [{ stacked: true }],
+                xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
             },
-            tooltips: {
-                mode: 'index',
-                axis: 'x',
-                intersect: false
-            },
+            tooltips: { mode: 'index', axis: 'x', intersect: false },
             responsive: true,
             maintainAspectRatio: false
         }
@@ -185,21 +166,9 @@ class ViewController < ApplicationController
         @wireless_graph_options = {
             width: 1200,
             height: 480,
-            plugins: {
-                filler: {
-                    propogate: true
-                }
-            },
-            scales: {
-                yAxes: [{
-                    stacked: true
-                }]
-            },
-            tooltips: {
-                mode: 'index',
-                axis: 'x',
-                intersect: false
-            },
+            plugins: { filler: { propogate: true } },
+            scales: { yAxes: [{ stacked: true }] },
+            tooltips: { mode: 'index', axis: 'x', intersect: false },
             responsive: true,
             maintainAspectRatio: false
         }
