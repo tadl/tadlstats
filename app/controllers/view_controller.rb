@@ -4,28 +4,7 @@ require "csv"
 class ViewController < ApplicationController
     def all
 
-        circ_csv = CSV.parse(open(Settings.circ_weekly_url).read(), :headers => false)
-
-        @circ_hash = Hash.new
-        @circ_hash['TADL-WOOD'] = Array.new
-        @circ_hash['TADL-EBB'] = Array.new
-        @circ_hash['TADL-FLPL'] = Array.new
-        @circ_hash['TADL-KBL'] = Array.new
-        @circ_hash['TADL-IPL'] = Array.new
-        @circ_hash['TADL-PCL'] = Array.new
-        @circ_hash['circdates'] = Array.new
-
-        circ_csv.each do |row|
-            location, date, count = row
-            if location == "TADL-WOOD"
-                @circ_hash['circdates'].push(date)
-            end
-            @circ_hash[location].push(count)
-        end
-
-        @foo = Rails.cache.read("books")  # cool this works
-
-
+        @circ_hash = Rails.cache.read('circ_graph')
         @circ_graph = {
             labels: @circ_hash['circdates'],
             datasets: [
