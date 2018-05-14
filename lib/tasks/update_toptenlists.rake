@@ -4,12 +4,12 @@ task :update_toptenlists => :environment do
     require 'csv'
 
     lists = {
-        "books" => "https://www.tadl.org/stats/data/top10books.csv",
-        "movies" => "https://www.tadl.org/stats/data/top10movies.csv",
-        "music" => "https://www.tadl.org/stats/data/top10music.csv"
+        "books" => Settings.top10books_url,
+        "movies" => Settings.top10movies_url,
+        "music" => Settings.top10music_url
     }
 
-    detailurl = "https://catalog.tadl.org/main/details.json?id="
+    detailurl = Settings.item_details_prefix
 
     topten = {}
 

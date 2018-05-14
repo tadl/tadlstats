@@ -4,10 +4,10 @@ task :update_graphs => :environment do
     require 'csv'
 
     graphs = {
-        "circ_graph" => "https://www.tadl.org/stats/data/circ-weekly.csv",
-        "wireless_graph" => "https://www.tadl.org/stats/data/wireless-weekly.csv",
-        "pubcomp_graph" => "https://www.tadl.org/stats/data/pubcomp-weekly.csv",
-        "newusers_graph" => "https://www.tadl.org/stats/data/newusers-weekly.csv"
+        "circ_graph" => Settings.circ_weekly_url,
+        "wireless_graph" => Settings.wireless_weekly_url,
+        "pubcomp_graph" => Settings.pubcomp_weekly_url,
+        "newusers_graph" => Settings.newusers_weekly_url
     }
 
     graphs.each do |key, link|
@@ -15,7 +15,6 @@ task :update_graphs => :environment do
         csv = CSV.parse(open(link).read(), :headers => false)
         
         if key == "circ_graph"
-            puts key
         end
 
     end
