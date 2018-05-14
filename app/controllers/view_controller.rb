@@ -7,43 +7,27 @@ class ViewController < ApplicationController
         @circ_hash = Rails.cache.read('circ_graph')
         @circ_graph = Hash.new
         @circ_graph[:labels] = @circ_hash['circdates']
-        if Settings.multi_location == true
-            @circ_graph[:datasets] = Array.new
-            Settings.locations.each do |location|
-                loc = Hash.new
-                if Settings.locations.first == location
-                    fill = "origin"
-                else
-                    fill = "-1"
-                end
-                loc = {
-                    label: location.short_name,
-                    backgroundColor: location.background_color,
-                    borderColor: location.border_color,
-                    data: @circ_hash[location.evergreen_name],
-                    fill: fill,
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded'
-                }
-                @circ_graph[:datasets].push(loc)
+        @circ_graph[:datasets] = Array.new
+        Settings.locations.each do |location|
+            loc = Hash.new
+            if Settings.locations.first == location
+                fill = "origin"
+            else
+                fill = "-1"
             end
-        else
-            @circ_graph[:datasets] = [{
+            loc = {
                 label: location.short_name,
                 backgroundColor: location.background_color,
                 borderColor: location.border_color,
                 data: @circ_hash[location.evergreen_name],
-                fill: "origin",
+                fill: fill,
                 pointRadius: 2,
                 pointHitRadius: 1,
                 pointHoverRadius: 5,
                 pointBorderWidth: 1,
                 pointStyle: 'rectRounded'
-            }]
-
+            }
+            @circ_graph[:datasets].push(loc)
         end
 
         @circ_graph_options = {
