@@ -5,83 +5,47 @@ class ViewController < ApplicationController
     def all
 
         @circ_hash = Rails.cache.read('circ_graph')
-        @circ_graph = {
-            labels: @circ_hash['circdates'],
-            datasets: [
-                {
-                    label: "Traverse City",
-                    backgroundColor: "rgba(57,106,177,0.5)",
-                    borderColor: "rgba(57,106,177,1)",
-                    data: @circ_hash['TADL-WOOD'],
-                    fill: 'origin',
+        @circ_graph = Hash.new
+        @circ_graph[:labels] = @circ_hash['circdates']
+        if Settings.multi_location == true
+            @circ_graph[:datasets] = Array.new
+            Settings.locations.each do |location|
+                loc = Hash.new
+                if Settings.locations.first == location
+                    fill = "origin"
+                else
+                    fill = "-1"
+                end
+                loc = {
+                    label: location.short_name,
+                    backgroundColor: location.background_color,
+                    borderColor: location.border_color,
+                    data: @circ_hash[location.evergreen_name],
+                    fill: fill,
                     pointRadius: 2,
                     pointHitRadius: 1,
                     pointHoverRadius: 5,
                     pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "East Bay",
-                    backgroundColor: "rgba(218,124,48,0.5)",
-                    borderColor: "rgba(218,124,48,1)",
-                    data: @circ_hash['TADL-EBB'],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Fife Lake",
-                    backgroundColor: "rgba(62,150,81,0.5)",
-                    borderColor: "rgba(62,150,81,1)",
-                    data: @circ_hash['TADL-FLPL'],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Kingsley",
-                    backgroundColor: "rgba(204,37,41,0.5)",
-                    borderColor: "rgba(204,37,41,1)",
-                    data: @circ_hash['TADL-KBL'],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Interlochen",
-                    backgroundColor: "rgba(83,81,84,0.5)",
-                    borderColor: "rgba(83,81,84,1)",
-                    data: @circ_hash['TADL-IPL'],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Peninsula",
-                    backgroundColor: "rgba(107,76,154,0.5)",
-                    borderColor: "rgba(107,76,154,1)",
-                    data: @circ_hash['TADL-PCL'],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-            ]
-        }
+                    pointStyle: 'rectRounded'
+                }
+                @circ_graph[:datasets].push(loc)
+            end
+        else
+            @circ_graph[:datasets] = [{
+                label: location.short_name,
+                backgroundColor: location.background_color,
+                borderColor: location.border_color,
+                data: @circ_hash[location.evergreen_name],
+                fill: "origin",
+                pointRadius: 2,
+                pointHitRadius: 1,
+                pointHoverRadius: 5,
+                pointBorderWidth: 1,
+                pointStyle: 'rectRounded'
+            }]
+
+        end
+
         @circ_graph_options = {
             width: 1200,
             height: 480,
