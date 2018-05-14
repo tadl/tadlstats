@@ -4,9 +4,9 @@ require "csv"
 class ViewController < ApplicationController
 
     def all
-        @circ_hash = Rails.cache.read('circ_graph')
+        @circ_hash = Rails.cache.read('circ_weekly')
         @circ_graph = Hash.new
-        @circ_graph[:labels] = @circ_hash['circdates']
+        @circ_graph[:labels] = @circ_hash['graphdates']
         @circ_graph[:datasets] = Array.new
         Settings.locations.each do |location|
             loc = Hash.new
