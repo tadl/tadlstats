@@ -16,7 +16,7 @@
     },
     "scripts": {
         "dokku": {
-            "postdeploy": [ "rake update_graphs", "rake update_toptenlists" ]
+            "postdeploy": "rake update_graphs; rake update_toptenlists"
         }
     }
 }
