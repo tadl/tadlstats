@@ -18,8 +18,8 @@ namespace :data do
             if key == "circ_weekly"
                 @circ_hash = Hash.new
 
-                Settings.locations.each do |loc|
-                    @circ_hash[loc.evergreen_name] = Array.new
+                Settings.locations.each do |l|
+                    @circ_hash[l.evergreen_name] = Array.new
                 end
 
                 @circ_hash['graphdates'] = Array.new
@@ -32,7 +32,6 @@ namespace :data do
                     end
 
                     @circ_hash[location].push(count)
-
                 end
 
                 Rails.cache.write(key, @circ_hash)
@@ -41,8 +40,8 @@ namespace :data do
             if key == "pubcomp_weekly"
                 @pubcomp_hash = Hash.new
 
-                Settings.locations.each do |location|
-                    @pubcomp_hash[location.short_name] = Array.new
+                Settings.locations.each do |l|
+                    @pubcomp_hash[l.short_name] = Array.new
                 end
 
                 @pubcomp_hash['graphdates'] = Array.new
@@ -55,32 +54,46 @@ namespace :data do
                     end
 
                     @pubcomp_hash[location].push([sessions, seconds])
-
                 end
 
                 Rails.cache.write(key, @pubcomp_hash)
             end
 
             if key == "newusers_weekly"
-                dates_hash = Hash.new
+                @dates_hash = Hash.new
+                @newusers_hash = Hash.new
 
                 csv.each do |row|
                     location, date, count = row
 
-                    if !dates_hash.key?(date)
-                        dates_hash[date] = Array.new
+                    if !@dates_hash.key?(date)
+                        @dates_hash[date] = Hash.new
                     end
 
-                    dates_hash[date].push([location, count])
+                    @dates_hash[date].store(location, count)
+                end
+
+                Settings.locations.each do |l|
+                    @newusers_hash[l.evergreen_name] = Array.new
+                end
+
+                @newusers_hash['graphdates'] = Array.new
+
+                @dates_hash.each do |d, e|
+                    @newusers_hash['graphdates'].push(d)
+
+                    Settings.locations.each do |l|
+                        if @dates_hash[d][l.evergreen_name].nil?
+                            @newusers_hash[l.evergreen_name].push(0)
+                        else
+                            @newusers_hash[l.evergreen_name].push(e[l.evergreen_name])
+                        end
+
+                    end
 
                 end
-                puts dates_hash.inspect
 
-# arrange a new hash by location:
-# newusers_hash['graphdates'] with all the dates
-# and newusers_hash[location] with all the datapoints, 0 if nil
-
-                #Rails.cache.write(key, @newusers_hash)
+                Rails.cache.write(key, @newusers_hash)
             end
 
             if key == "wireless_weekly"
