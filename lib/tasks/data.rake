@@ -62,22 +62,25 @@ namespace :data do
             end
 
             if key == "newusers_weekly"
-                @newusers_hash = Hash.new
-
-                Settings.locations.each do |location|
-                    @newusers_hash[location.evergreen_name] = Array.new
-                end
-
-                @newusers_hash['graphdates'] = Array.new
+                dates_hash = Hash.new
 
                 csv.each do |row|
                     location, date, count = row
 
-                    @newusers_hash[location].push([date, count])
+                    if !dates_hash.key?(date)
+                        dates_hash[date] = Array.new
+                    end
+
+                    dates_hash[date].push([location, count])
 
                 end
+                puts dates_hash.inspect
 
-                Rails.cache.write(key, @newusers_hash)
+# arrange a new hash by location:
+# newusers_hash['graphdates'] with all the dates
+# and newusers_hash[location] with all the datapoints, 0 if nil
+
+                #Rails.cache.write(key, @newusers_hash)
             end
 
             if key == "wireless_weekly"
