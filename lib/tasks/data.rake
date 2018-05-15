@@ -78,8 +78,6 @@ namespace :data do
                     end
                 end
 
-                #puts @pubcomp_hash.inspect
-
                 Rails.cache.write(key, @pubcomp_hash)
             end
 
@@ -125,7 +123,7 @@ namespace :data do
 
         end
 
-        Rails.cache.write('charts_updated', Time.now)
+        Rails.cache.write('graphs_updated', Time.now)
     end
 
 
@@ -141,12 +139,12 @@ namespace :data do
         }
 
         detailurl = Settings.item_details_prefix
-        topten = {}
+        topten = Hash.new
 
         lists.each do |key, link|
             puts "[lists task] processing " + key + "... "
             csv = CSV.parse(open(link).read(), :headers => false)
-            topten[key] = Array.new
+            topten[key] = Hash.new
 
             csv.each do |row|
                 id, title, author, year, abstract, count = row
@@ -164,10 +162,10 @@ namespace :data do
                 abstract = response['abstract']
                 contents = response['contents']
 
-                topten[key].push([id, count, author, title, year, abstract, contents])
+                topten[key].store(id, {:count => count, :author => author, :title => title, :year => year, :abstract => abstract, :contents => contents})
             end
 
-            Rails.cache.write(key, topten[key])
+            Rails.cache.write("topten" + key, topten[key])
         end
 
         Rails.cache.write('lists_updated', Time.now)
@@ -176,7 +174,25 @@ namespace :data do
 
     desc "stats"
     task stats: :environment do
-            puts "[stats task] ..."
+        require 'open-uri'
+        require 'csv'
+
+        files = {
+            "circ_by_type_ytd" => Settings.circ_by_type_ytd_url,
+            "collection_size" => Settings.collection_size_url,
+            "copies_added_ytd" => Settings.copies_added_ytd_url,
+            "copies_withdrawn_ytd" => Settings.copies_withdrawn_ytd_url,
+            "newusers_ytd" => Settings.newusers_ytd_url,
+            "pubcomp_ytd" => Settings.pubcomp_ytd_url,
+            "soft_stat_questions_ytd" => Settings.soft_stat_questions_ytd_url,
+            "wireless_ytd" => Settings.wireless_ytd_url
+        }
+
+        files.each do |file, link|
+            puts "[stats task] processing " + file + "..."
+        end
+
+        Rails.cache.write('stats_updated', Time.now)
     end
 
 
