@@ -99,14 +99,14 @@
     <div class="col-xs-12 col-lg-6">
         <div class="box box-primary box-solid" data-widget="box-widget">
             <div class="box-header">
-                <h3 class="box-title">Computer Use</h3>
+                <h3 class="box-title">Public Computer Sessions</h3>
                 <div class="box-tools">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                     <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
                 </div>
             </div>
             <div class="box-body">
-                <img src="https://placehold.it/1200x480" style="width: 100%;height:auto;"/>
+                <%= line_chart @pubcomp_graph, @pubcomp_graph_options %>
             </div>
         </div>
     </div>

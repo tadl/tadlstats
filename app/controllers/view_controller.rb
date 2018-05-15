@@ -42,6 +42,44 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
+        @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
+        @pubcomp_graph = Hash.new
+        @pubcomp_graph[:labels] = @pubcomp_hash['graphdates']
+        @pubcomp_graph[:datasets] = Array.new
+
+        Settings.locations.each do |location|
+            loc = Hash.new
+            fill = (Settings.locations.first == location)? "origin" : "-1"
+
+            loc = {
+                label: location.short_name,
+                backgroundColor: location.background_color,
+                borderColor: location.border_color,
+                data: @pubcomp_hash['sessions'][location.short_name],
+                fill: fill,
+                pointRadius: 2,
+                pointHitRadius: 1,
+                pointHoverRadius: 5,
+                pointBorderWidth: 1,
+                pointStyle: 'rectRounded'
+            }
+
+            @pubcomp_graph[:datasets].push(loc)
+        end
+
+        @pubcomp_graph_options = {
+            width: 1200,
+            height: 480,
+            plugins: { filler: { propogate: true } },
+            scales: {
+                yAxes: [{ stacked: true }],
+                xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
+            },
+            tooltips: { mode: 'index', axis: 'x', intersect: false },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+
         @newusers_hash = Rails.cache.read('newusers_weekly')
         @newusers_graph = Hash.new
         @newusers_graph[:labels] = @newusers_hash['graphdates']

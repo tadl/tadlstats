@@ -38,7 +38,25 @@ namespace :data do
             end
 
             if key == "pubcomp_weekly"
+                @dates_hash = Hash.new
                 @pubcomp_hash = Hash.new
+                @pubcomp_hash['sessions'] = Hash.new
+                @pubcomp_hash['seconds'] = Hash.new
+
+                Settings.locations.each do |l|
+                    @pubcomp_hash['sessions'][l.short_name] = Array.new
+                    @pubcomp_hash['seconds'][l.short_name] = Array.new
+                end
+
+                csv.each do |row|
+                    location, date, sessions, seconds = row
+
+                    if !@dates_hash.key?(date)
+                        @dates_hash[date] = Hash.new
+                    end
+
+                    @dates_hash[date].store(location, [sessions, seconds])
+                end
 
                 Settings.locations.each do |l|
                     @pubcomp_hash[l.short_name] = Array.new
@@ -46,15 +64,21 @@ namespace :data do
 
                 @pubcomp_hash['graphdates'] = Array.new
 
-                csv.each do |row|
-                    location, date, sessions, seconds = row
+                @dates_hash.each do |d, e|
+                    @pubcomp_hash['graphdates'].push(d)
 
-                    if location == Settings.locations.first[:short_name]
-                        @pubcomp_hash['graphdates'].push(date)
+                    Settings.locations.each do |l|
+                        if @dates_hash[d][l.short_name].nil?
+                            @pubcomp_hash['sessions'][l.short_name].push(0)
+                            @pubcomp_hash['seconds'][l.short_name].push(0)
+                        else
+                            @pubcomp_hash['sessions'][l.short_name].push(e[l.short_name][0])
+                            @pubcomp_hash['seconds'][l.short_name].push(e[l.short_name][1])
+                        end
                     end
-
-                    @pubcomp_hash[location].push([sessions, seconds])
                 end
+
+                #puts @pubcomp_hash.inspect
 
                 Rails.cache.write(key, @pubcomp_hash)
             end
