@@ -8,9 +8,11 @@ class ViewController < ApplicationController
         @circ_graph = Hash.new
         @circ_graph[:labels] = @circ_hash['graphdates']
         @circ_graph[:datasets] = Array.new
+
         Settings.locations.each do |location|
             loc = Hash.new
             fill = (Settings.locations.first == location)? "origin" : "-1"
+
             loc = {
                 label: location.short_name,
                 backgroundColor: location.background_color,
@@ -23,10 +25,49 @@ class ViewController < ApplicationController
                 pointBorderWidth: 1,
                 pointStyle: 'rectRounded'
             }
+
             @circ_graph[:datasets].push(loc)
         end
 
         @circ_graph_options = {
+            width: 1200,
+            height: 480,
+            plugins: { filler: { propogate: true } },
+            scales: {
+                yAxes: [{ stacked: true }],
+                xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
+            },
+            tooltips: { mode: 'index', axis: 'x', intersect: false },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+
+        @newusers_hash = Rails.cache.read('newusers_weekly')
+        @newusers_graph = Hash.new
+        @newusers_graph[:labels] = @newusers_hash['graphdates']
+        @newusers_graph[:datasets] = Array.new
+
+        Settings.locations.each do |location|
+            loc = Hash.new
+            fill = (Settings.locations.first == location)? "origin" : "-1"
+
+            loc = {
+                label: location.short_name,
+                backgroundColor: location.background_color,
+                borderColor: location.border_color,
+                data: @newusers_hash[location.evergreen_name],
+                fill: fill,
+                pointRadius: 2,
+                pointHitRadius: 1,
+                pointHoverRadius: 5,
+                pointBorderWidth: 1,
+                pointStyle: 'rectRounded'
+            }
+
+            @newusers_graph[:datasets].push(loc)
+        end
+
+        @newusers_graph_options = {
             width: 1200,
             height: 480,
             plugins: { filler: { propogate: true } },
