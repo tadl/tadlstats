@@ -1,5 +1,5 @@
 desc "fetch top ten lists and store them in cache"
-task :update_toptenlists => :environment do
+task :toptenlists => :environment do
     require 'open-uri'
     require 'csv'
 

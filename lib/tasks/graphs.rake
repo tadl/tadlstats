@@ -1,5 +1,5 @@
 desc "fetch graph data and store in cache"
-task :update_graphs => :environment do
+task :graphs => :environment do
     require 'open-uri'
     require 'csv'
 
