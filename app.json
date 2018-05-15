@@ -16,7 +16,7 @@
     },
     "scripts": {
         "dokku": {
-            "postdeploy": "rake graphs; rake toptenlists"
+            "postdeploy": "rake data:all"
         }
     }
 }
