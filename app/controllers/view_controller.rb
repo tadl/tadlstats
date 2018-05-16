@@ -1,3 +1,5 @@
+include ViewHelper
+include ApplicationHelper
 class ViewController < ApplicationController
     require "open-uri"
     require "csv"
