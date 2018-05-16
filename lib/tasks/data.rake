@@ -200,15 +200,22 @@ namespace :data do
             if file == "circ_by_type_ytd"
                 csv.each do |row|
                     loc, type, count = row
-                    @statsdata[file].store(loc, {:type => type, :count => count})
+                    if !@statsdata[file].key?(loc)
+                        @statsdata[file][loc] = Hash.new
+                    end
+                    @statsdata[file][loc].store(type, count)
                 end
+                puts @statsdata.inspect
 
             end
 
             if file == "collection_size"
                 csv.each do |row|
                     loc, type, count = row
-                    @statsdata[file].store(loc, {:type => type, :count => count})
+                    if !@statsdata[file].key?(loc)
+                        @statsdata[file][loc] = Hash.new
+                    end
+                    @statsdata[file][loc].store(type, count)
                 end
 
             end
@@ -216,7 +223,10 @@ namespace :data do
             if file == "copies_added_ytd"
                 csv.each do |row|
                     loc, type, count = row
-                    @statsdata[file].store(loc, {:type => type, :count => count})
+                    if !@statsdata[file].key?(loc)
+                        @statsdata[file][loc] = Hash.new
+                    end
+                    @statsdata[file][loc].store(type, count)
                 end
 
             end
@@ -224,7 +234,10 @@ namespace :data do
             if file == "copies_withdrawn_ytd"
                 csv.each do |row|
                     loc, type, count = row
-                    @statsdata[file].store(loc, {:type => type, :count => count})
+                    if !@statsdata[file].key?(loc)
+                        @statsdata[file][loc] = Hash.new
+                    end
+                    @statsdata[file][loc].store(type, count)
                 end
 
             end
@@ -232,7 +245,7 @@ namespace :data do
             if file == "newusers_ytd"
                 csv.each do |row|
                     loc, count = row
-                    @statsdata[file].store(loc, {:count => count})
+                    @statsdata[file].store(loc, count)
                 end
 
             end
@@ -240,6 +253,9 @@ namespace :data do
             if file == "pubcomp_ytd"
                 csv.each do |row|
                     loc, sessions, seconds, users = row
+                    if !@statsdata[file].key?(loc)
+                        @statsdata[file][loc] = Hash.new
+                    end
                     @statsdata[file].store(loc, {:sessions => sessions, :seconds => seconds, :users => users})
                 end
 
@@ -248,7 +264,7 @@ namespace :data do
             if file == "soft_stat_questions_ytd"
                 csv.each do |row|
                     loc, count = row
-                    @statsdata[file].store(loc, {:count => count})
+                    @statsdata[file].store(loc, count)
                 end
 
             end
@@ -256,7 +272,10 @@ namespace :data do
             if file == "wireless_ytd"
                 csv.each do |row|
                     loc, count, devices = row
-                    @statsdata[file].store(loc, {:count => count, :devices => devices})
+                    if !@statsdata[file].key?(loc)
+                        @statsdata[file][loc] = Hash.new
+                    end
+                    @statsdata[file][loc].store(count, devices)
                 end
 
             end
