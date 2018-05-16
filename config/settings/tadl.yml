@@ -67,3 +67,4 @@ locations:
     evergreen_id: 23
     background_color: "rgba(107,76,154,0.5)"
     border_color: "rgba(107,76,154,1)"
+item_types: [["audiobooks", "Audiobooks"], ["books", "Books"], ["childrensbooks", "Children's Books"], ["magazines", "Magazines"], ["music", "Music"], ["movies", "Movies"], ["puppets", "Puppets"], ["other", "Other"]]

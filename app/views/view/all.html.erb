@@ -4,7 +4,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-archive"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Collection Size</span>
-                <span class="info-box-number">330,904</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size) %></span>
                 <p>Books, movies, music and more!</p>
             </div>
         </div>
@@ -14,7 +14,8 @@
             <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Computer Sessions</span>
-                <span class="info-box-number">19,172</span> this year
+                <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %></span>
+                <p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</span>
             </div>
         </div>
     </div>
@@ -23,7 +24,7 @@
             <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Wireless Sessions</span>
-                <span class="info-box-number">931,337 <small>last 12 months</small></span>
+                <span class="info-box-number">nil <small>last 12 months</small></span>
                 <p>SSID <code>tadl-patron-wireless</code></p>
             </div>
         </div>
@@ -33,7 +34,7 @@
             <span class="info-box-icon bg-blue"><i class="fa fa-book"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Items Circulated</span>
-                <span class="info-box-number">468,670 <small>this year</small></span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_items_circulated) %> <small>this year</small></span>
                 <p>
             </div>
         </div>
@@ -75,7 +76,7 @@
             <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Questions Answered</span>
-                <span class="info-box-number">37,258</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %></span>
                 <p>at Traverse City, East Bay and Kingsley</p>
             </div>
         </div>
@@ -85,7 +86,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Puppets Circulated</span>
-                <span class="info-box-number">2842</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %></span>
             </div>
         </div>
     </div>
@@ -94,7 +95,7 @@
             <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Users Registered</span>
-                <span class="info-box-number">1,555 <small>this year</small></span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>this year</small></span>
             </div>
         </div>
     </div>
@@ -134,29 +135,29 @@
             <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Users Registered</span>
-                    <span class="info-box-number">1,555</span>
+                    <span class="info-box-text">Place Holder</span>
+                    <span class="info-box-number">1,337</span>
                 </div>
             </div>
             <div class="info-box">
                 <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Users Registered</span>
-                    <span class="info-box-number">1,555</span>
+                    <span class="info-box-text">Place Holder</span>
+                    <span class="info-box-number">1,337</span>
                 </div>
             </div>
             <div class="info-box">
                 <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Users Registered</span>
-                    <span class="info-box-number">1,555</span>
+                    <span class="info-box-text">Place Holder</span>
+                    <span class="info-box-number">1,337</span>
                 </div>
             </div>
             <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Users Registered</span>
-                    <span class="info-box-number">1,555</span>
+                    <span class="info-box-text">Place Holder</span>
+                    <span class="info-box-number">1,337</span>
                 </div>
             </div>
     </div>
@@ -216,15 +217,27 @@
                         <caption>Cumulative collection statistics from the last 12 months.</caption>
                         <thead>
                             <tr>
-                                <td>Type</td>
-                                <td>Count</td>
-                                <td>Added</td>
-                                <td>Withdrawn</td>
-                                <td>% Change</td>
+                                <td><strong>Type</strong></td>
+                                <td><strong>Count</strong></td>
+                                <td><strong>Added</strong></td>
+                                <td><strong>Withdrawn</strong></td>
+                                <td><strong>% Change</strong></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><!-- automate these, obviously! -->
+                            <% @stats_collection_stats["total"].each do |k, v| %>
+                                <tr>
+                                    <td><%= item_type_map(k) %></td>
+                                    <td><%= number_with_delimiter(v) %></td>
+                                    <td><%= number_with_delimiter(@stats_copies_added[k]) %></td>
+                                    <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) %></td>
+                                    <% original = v + @stats_copies_withdrawn[k] - @stats_copies_added[k] %>
+                                    <% change = v - original %>
+                                    <td><%= "%+.2f" % change.percent_of(original) %></td>
+                                </tr>
+                            <% end %>
+<!--
+                            <tr>
                                 <td>Book</td>
                                 <td>147,075</td>
                                 <td>4,778</td>
@@ -272,7 +285,7 @@
                                 <td>147</td>
                                 <td>158</td>
                                 <td>1% <i class="fa fa-caret-down"></i><span class="sr-only">decrease</span></td>
-                            </tr>
+                            </tr>  -->
                         </tbody>
                     </table>
                 </div>

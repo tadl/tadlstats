@@ -1,9 +1,33 @@
-require "open-uri"
-require "csv"
-
 class ViewController < ApplicationController
+    require "open-uri"
+    require "csv"
 
     def all
+        @stats_data = Rails.cache.read('stats_data')
+
+        @stats_collection_size = 0
+        @stats_data["collection_size"]["total"].each do |type, val|
+            @stats_collection_size += val.to_i
+        end
+
+        @stats_computer_sessions = @stats_data["pubcomp_ytd"]["total"][:sessions]
+        @stats_computer_users = @stats_data["pubcomp_ytd"]["total"][:users]
+
+        @stats_items_circulated = 0
+        @stats_data["circ_by_type_ytd"]["total"].each do |type, val|
+            @stats_items_circulated += val.to_i
+        end
+
+        @stats_questions_answered = @stats_data["soft_stat_questions_ytd"]["total"]
+
+        @stats_puppets_circulated = @stats_data["circ_by_type_ytd"]["total"]["puppets"]
+
+        @stats_new_users = @stats_data["newusers_ytd"]["total"]
+
+        @stats_collection_stats = @stats_data["collection_size"]
+        @stats_copies_added = @stats_data["copies_added_ytd"]["total"]
+        @stats_copies_withdrawn = @stats_data["copies_withdrawn_ytd"]["total"]
+
         @circ_hash = Rails.cache.read('circ_weekly')
         @circ_graph = Hash.new
         @circ_graph[:labels] = @circ_hash['graphdates']
