@@ -221,7 +221,7 @@
                                 <td><strong>Count</strong></td>
                                 <td><strong>Added</strong></td>
                                 <td><strong>Withdrawn</strong></td>
-                                <td><strong>% Change</strong></td>
+                                <td><strong>Change</strong></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -233,7 +233,7 @@
                                     <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) %></td>
                                     <% original = v + @stats_copies_withdrawn[k] - @stats_copies_added[k] %>
                                     <% change = v - original %>
-                                    <td><%= "%+.2f" % change.percent_of(original) %></td>
+                                    <td><%= "%+.2f" % change.percent_of(original) %>%</td>
                                 </tr>
                             <% end %>
 <!--
