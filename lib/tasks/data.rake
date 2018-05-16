@@ -288,13 +288,9 @@ namespace :data do
             end
 
             if file == "pubcomp_ytd"
-                @totalses = @totalsec = @totalusers = 0
 
                 csv.each do |row|
                     loc, sessions, seconds, users = row
-                    @totalses += sessions.to_i
-                    @totalsec += seconds.to_i
-                    @totalusers += users.to_i
 
                     if !@statsdata[file].key?(loc)
                         @statsdata[file][loc] = Hash.new
@@ -303,7 +299,10 @@ namespace :data do
                     @statsdata[file].store(loc, {:sessions => sessions, :seconds => seconds, :users => users})
                 end
 
-                @statsdata[file]["total"] = {:sessions => @totalses, :seconds => @totalsec, :users => @totalusers}
+                if @statsdata[file].key?("tadl")
+                    @statsdata[file]["total"] = @statsdata[file]["tadl"]
+                end
+
             end
 
             if file == "soft_stat_questions_ytd"
