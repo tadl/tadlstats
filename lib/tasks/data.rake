@@ -205,68 +205,117 @@ namespace :data do
                     end
                     @statsdata[file][loc].store(type, count)
                 end
-                puts @statsdata.inspect
 
+                @total = Hash.new(0)
+
+                Settings.locations.each do |l|
+                    @statsdata[file][l.evergreen_name].each {|key, count| @total[key] += count.to_i}
+                end
+
+                @statsdata[file]["total"] = @total
             end
 
             if file == "collection_size"
                 csv.each do |row|
                     loc, type, count = row
+
                     if !@statsdata[file].key?(loc)
                         @statsdata[file][loc] = Hash.new
                     end
+
                     @statsdata[file][loc].store(type, count)
                 end
 
+                @total = Hash.new(0)
+
+                Settings.locations.each do |l|
+                    @statsdata[file][l.evergreen_name].each {|key, count| @total[key] += count.to_i}
+                end
+
+                @statsdata[file]["total"] = @total
             end
 
             if file == "copies_added_ytd"
                 csv.each do |row|
                     loc, type, count = row
+
                     if !@statsdata[file].key?(loc)
                         @statsdata[file][loc] = Hash.new
                     end
+
                     @statsdata[file][loc].store(type, count)
                 end
 
+                @total = Hash.new(0)
+
+                Settings.locations.each do |l|
+                    @statsdata[file][l.evergreen_name].each {|key, count| @total[key] += count.to_i}
+                end
+
+                @statsdata[file]["total"] = @total
             end
 
             if file == "copies_withdrawn_ytd"
                 csv.each do |row|
                     loc, type, count = row
+
                     if !@statsdata[file].key?(loc)
                         @statsdata[file][loc] = Hash.new
                     end
+
                     @statsdata[file][loc].store(type, count)
                 end
 
+                @total = Hash.new(0)
+
+                Settings.locations.each do |l|
+                    @statsdata[file][l.evergreen_name].each {|key, count| @total[key] += count.to_i}
+                end
+
+                @statsdata[file]["total"] = @total
             end
 
             if file == "newusers_ytd"
+                @total = 0
+
                 csv.each do |row|
                     loc, count = row
+                    @total += count.to_i
                     @statsdata[file].store(loc, count)
                 end
 
+                @statsdata[file]["total"] = @total
             end
 
             if file == "pubcomp_ytd"
+                @totalses = @totalsec = @totalusers = 0
+
                 csv.each do |row|
                     loc, sessions, seconds, users = row
+                    @totalses += sessions.to_i
+                    @totalsec += seconds.to_i
+                    @totalusers += users.to_i
+
                     if !@statsdata[file].key?(loc)
                         @statsdata[file][loc] = Hash.new
                     end
+
                     @statsdata[file].store(loc, {:sessions => sessions, :seconds => seconds, :users => users})
                 end
 
+                @statsdata[file]["total"] = {:sessions => @totalses, :seconds => @totalsec, :users => @totalusers}
             end
 
             if file == "soft_stat_questions_ytd"
+                @total = 0
+
                 csv.each do |row|
                     loc, count = row
+                    @total += count.to_i
                     @statsdata[file].store(loc, count)
                 end
 
+                @statsdata[file]["total"] = @total
             end
 
             if file == "wireless_ytd"
