@@ -310,6 +310,10 @@ class ViewController < ApplicationController
             }]
         }
 
+        @toptenbooks = Rails.cache.read("toptenbooks")
+        @toptenmovies = Rails.cache.read("toptenmovies")
+        @toptenmusic = Rails.cache.read("toptenmusic")
+
     end
 
     def eastbay

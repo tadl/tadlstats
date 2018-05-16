@@ -1,6 +1,8 @@
 system_shortname: "TADL"
 system_longname: "Traverse Area District Library"
 item_details_prefix: "https://catalog.tadl.org/main/details.json?id="
+item_details_link_prefix: "https://catalog.tadl.org/main/details?id="
+cover_image_prefix: "https://catalog.tadl.org/opac/extras/ac/jacket/large/r/"
 circ_weekly_url: "https://www.tadl.org/stats/data/circ-weekly.csv"
 circ_by_type_ytd_url: "https://www.tadl.org/stats/data/circ-by-type-ytd.csv"
 collection_size_url: "https://www.tadl.org/stats/data/collection-size.csv"
