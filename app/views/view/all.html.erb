@@ -301,19 +301,23 @@
             </div>
             <div class="box-body">
                 <% @toptenbooks.each do |id, book| %>
-                    <div class="media"><!-- media item -->
-                        <div class="media-left">
-                            <a href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                    <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                        <div class="media"><!-- media item -->
+                            <div class="media-left">
                                 <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><%= book[":title"] %><span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="48 circulations last week"><%= book[":count"] %></span></h4>
-                            <p><strong><%= book[":author"] %></strong>, <%= book["year"] %></p>
-                            <p class="abstract"><span><%= book[":abstract"] %></span></p>
-                            <p class="contents"><span><%= book[":contents"] %></span></p>
-                        </div>
-                    </div><!-- end media item -->
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations last week"><%= book[:count] %></button> <%= book[:title] %></h4>
+                                <p><strong><%= book[:author] %></strong>, <%= book[:year] %></p>
+                                <% if !book[:abstract].empty? %>
+                                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                                <% end %>
+                                <% if !book[:contents].empty? && book[:abstract].empty? %>
+                                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                                <% end %>
+                            </div>
+                        </div><!-- end media item -->
+                    </a>
                 <% end %>
             </div>
         </div>
@@ -328,128 +332,24 @@
                 </div>
             </div>
             <div class="box-body">
-                
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-
+                <% @toptenmovies.each do |id, book| %>
+                    <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                        <div class="media"><!-- media item -->
+                            <div class="media-left">
+                                <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations last week"><%= book[:count] %></button> <%= book[:title] %><% if !book[:year].empty? %> <small>(<%= book[:year] %>)</small><% end %></h4>
+                                <% if !book[:abstract].empty? %>
+                                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                                <% end %>
+                                <% if !book[:contents].empty? && book[:abstract].empty? %>
+                                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                                <% end %>
+                            </div>
+                        </div><!-- end media item -->
+                    </a>
+                <% end %>
             </div>
         </div>
     </div>
@@ -463,128 +363,25 @@
                 </div>
             </div>
             <div class="box-body">
-                
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-                <div class="media"><!-- media item -->
-                    <div class="media-left">
-                        <a href="https://catalog.tadl.org/main/details?id=">
-                            <img class="media-object cover-image" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/" alt="cover image" />
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">TITLE<span class="label label-primary pull-right" data-toggle="tooltip" data-placement="top" title="XX circulations last week">XX</span></h4>
-                        <p><strong>Author</strong>, Year</p>
-                        <p class="abstract"><span>Abstract</span></p>
-                    </div>
-                </div><!-- end media item -->
-
+                <% @toptenmusic.each do |id, book| %>
+                    <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                        <div class="media"><!-- media item -->
+                            <div class="media-left">
+                                <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations last week"><%= book[:count] %></button> <%= book[:title] %></h4>
+                                <p><strong><%= book[:author] %></strong><% if !book[:author].empty? && !book[:year].empty? %>, <% end %><% if !book[:year].empty? %><%= book[:year] %><% end %></p>
+                                <% if !book[:abstract].empty? %>
+                                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                                <% end %>
+                                <% if !book[:contents].empty? && book[:abstract].empty? %>
+                                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                                <% end %>
+                            </div>
+                        </div><!-- end media item -->
+                    </a>
+                <% end %>
             </div>
         </div>
     </div>

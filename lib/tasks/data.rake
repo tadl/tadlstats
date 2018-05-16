@@ -158,6 +158,8 @@ namespace :data do
                 end
 
                 title = response['title']
+                titlesplit = title.split(" : ")
+                title = titlesplit[0]
                 year = response['record_year']
                 abstract = response['abstract']
                 contents = response['contents']
