@@ -190,10 +190,80 @@ namespace :data do
             "wireless_ytd" => Settings.wireless_ytd_url
         }
 
+        @statsdata = Hash.new
+
         files.each do |file, link|
             puts "[stats task] processing " + file + "..."
+            csv = CSV.parse(open(link).read(), :headers => false)
+            @statsdata[file] = Hash.new
+
+            if file == "circ_by_type_ytd"
+                csv.each do |row|
+                    loc, type, count = row
+                    @statsdata[file].store(loc, {:type => type, :count => count})
+                end
+
+            end
+
+            if file == "collection_size"
+                csv.each do |row|
+                    loc, type, count = row
+                    @statsdata[file].store(loc, {:type => type, :count => count})
+                end
+
+            end
+
+            if file == "copies_added_ytd"
+                csv.each do |row|
+                    loc, type, count = row
+                    @statsdata[file].store(loc, {:type => type, :count => count})
+                end
+
+            end
+
+            if file == "copies_withdrawn_ytd"
+                csv.each do |row|
+                    loc, type, count = row
+                    @statsdata[file].store(loc, {:type => type, :count => count})
+                end
+
+            end
+
+            if file == "newusers_ytd"
+                csv.each do |row|
+                    loc, count = row
+                    @statsdata[file].store(loc, {:count => count})
+                end
+
+            end
+
+            if file == "pubcomp_ytd"
+                csv.each do |row|
+                    loc, sessions, seconds, users = row
+                    @statsdata[file].store(loc, {:sessions => sessions, :seconds => seconds, :users => users})
+                end
+
+            end
+
+            if file == "soft_stat_questions_ytd"
+                csv.each do |row|
+                    loc, count = row
+                    @statsdata[file].store(loc, {:count => count})
+                end
+
+            end
+
+            if file == "wireless_ytd"
+                csv.each do |row|
+                    loc, count, devices = row
+                    @statsdata[file].store(loc, {:count => count, :devices => devices})
+                end
+
+            end
+
         end
 
+        Rails.cache.write('stats_data', @statsdata)
         Rails.cache.write('stats_updated', Time.now)
     end
 
