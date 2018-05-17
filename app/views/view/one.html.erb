@@ -1,2 +1,231 @@
-<h1>View#<%= @location %></h1>
-<p>Find me in app/views/view/one.html.erb</p>
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-archive"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Collection Size</span>
+                <span class="info-box-number"></span>
+                <p>Books, movies, music and more!</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Computer Sessions</span>
+                <span class="info-box-number"></span>
+                <p>by <b></b> unique users</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Wireless Sessions</span>
+                <span class="info-box-number">nil <small>past 12 months</small></span>
+                <p>SSID <code><%= Settings.wireless_ssid %></code></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Items Circulated</span>
+                <span class="info-box-number"><small>this year</small></span>
+                <p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-lg-6">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Weekly Circulation</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chartfix">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Wireless Sessions</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chartfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-lg-6">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Public Computer Sessions</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chartfix">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">New Users</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chartfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Books in Collection</span>
+                <span class="info-box-number"></span>
+                <p>Includes Children's books</p>
+            </div>
+        </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Books Circulated</span>
+                <span class="info-box-number"></span>
+                <p>Past 12 months</p>
+            </div>
+        </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-play-circle"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Audiovisual Materials</span>
+                <span class="info-box-number"></span>
+                <p>Audiobooks, Movies and Music</p>
+            </div>
+        </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-play-circle"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">AV Materials Circulated</span>
+                <span class="info-box-number"></span>
+                <p>Past 12 months</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Circulation Stats</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <p><span class="emphasize">so far</span> this year, <span class="emphasize">125,397</span> books, <span class="emphasize">85,592</span> children's books, <span class="emphasize">105,212</span> movies, <span class="emphasize">28,453</span> albums, <span class="emphasize">4,162</span> magazines, <span class="emphasize">16,352</span> audiobooks and <span class="emphasize">479</span> puppets circulated. </p>
+                <p>need to do something more with this area, or figure out a better layout</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Circulation by Type</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Collection Distribution</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Collection Stats</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <caption>Cumulative collection statistics from the last 12 months.</caption>
+                        <thead>
+                            <tr>
+                                <td><strong>Type</strong></td>
+                                <td><strong>Count</strong></td>
+                                <td><strong>Added</strong></td>
+                                <td><strong>Withdrawn</strong></td>
+                                <td><strong>Change</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Collection Movement</h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(".toggle-expand-btn.btn.btn-box-tool").on("click", function(event) {
+    $(event.target).closest(".box").toggleClass("panel-fullscreen");
+    console.log("clicked");
+});
+$(".fa-bug").on("click", function(event) {
+    $(this).toggleClass("fa-spin");
+});
+</script>

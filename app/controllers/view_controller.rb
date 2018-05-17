@@ -13,6 +13,9 @@ class ViewController < ApplicationController
         @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
         @newusers_hash = Rails.cache.read('newusers_weekly')
 
+        # Page title in header
+        @longname = "All Locations"
+
         # Color definitions for pie/circle graphs
         pie_chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
                              "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
@@ -367,17 +370,31 @@ class ViewController < ApplicationController
     end
 
     def one
-        @location = params[:location]
+        @loc = Hash.new
         Settings.locations.each do |l|
-            if @location == l.path_name
+            if l.path_name == params[:location]
                 @loc = l
+                @longname = @loc.long_name
+                break
             else
-                redirect_to view_all_path and return
+                @loc["path_name"] = "invalid"
             end
 
         end
 
+        if @loc["path_name"].to_s != params[:location].to_s
+            redirect_to view_all_path and return
+        end
+
         # Do all the graphy stuff here and use @loc[.stuff] to filter for a single location
+
+        @stats_data = Rails.cache.read('stats_data')
+        @circ_hash = Rails.cache.read('circ_weekly')
+        @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
+        @newusers_hash = Rails.cache.read('newusers_weekly')
+
+
+
 
     end
 
