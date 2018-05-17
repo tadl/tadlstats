@@ -6,31 +6,77 @@ class ViewController < ApplicationController
 
     def all
         @stats_data = Rails.cache.read('stats_data')
+        @circ_hash = Rails.cache.read('circ_weekly')
+        @toptenbooks = Rails.cache.read("toptenbooks")
+        @toptenmovies = Rails.cache.read("toptenmovies")
+        @toptenmusic = Rails.cache.read("toptenmusic")
+        @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
+        @newusers_hash = Rails.cache.read('newusers_weekly')
 
+        # Color definitions for pie/circle graphs
+        pie_chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
+                             "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
+        pie_chart_halftones = [ "rgba(57,106,177,0.5)", "rgba(218,124,48,0.5)", "rgba(62,150,81,0.5)", "rgba(204,37,41,0.5)",
+                                "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
+
+        # Collection Size (box + graph)
         @stats_collection_size = 0
+        stats_collection_size_graph_data = Array.new
+        stats_collection_size_graph_labels = Array.new
+        @stats_collection_size_books = 0
+
         @stats_data["collection_size"]["total"].each do |type, val|
             @stats_collection_size += val.to_i
+
+            if type.include? "book"
+                @stats_collection_size_books += val.to_i
+            end
+
+            stats_collection_size_graph_data.push(val)
+            stats_collection_size_graph_labels.push(item_type_map(type))
         end
 
+        # Circulation by Type (graph + box)
+        stats_circ_by_type_graph_data = Array.new
+        stats_circ_by_type_graph_labels = Array.new
+        @stats_circ_by_type_books = 0
+
+        @stats_data["circ_by_type_ytd"]["total"].each do |type, val|
+            stats_circ_by_type_graph_data.push(val)
+            stats_circ_by_type_graph_labels.push(item_type_map(type))
+
+            if type.include? "book"
+                @stats_circ_by_type_books += val.to_i
+            end
+
+        end
+
+        # Computer sessions / users (box)
         @stats_computer_sessions = @stats_data["pubcomp_ytd"]["total"][:sessions]
         @stats_computer_users = @stats_data["pubcomp_ytd"]["total"][:users]
 
+        # Items Circulated (box)
         @stats_items_circulated = 0
+
         @stats_data["circ_by_type_ytd"]["total"].each do |type, val|
             @stats_items_circulated += val.to_i
         end
 
+        # Questions Answered (box)
         @stats_questions_answered = @stats_data["soft_stat_questions_ytd"]["total"]
 
+        # Puppets Circulated (box)
         @stats_puppets_circulated = @stats_data["circ_by_type_ytd"]["total"]["puppets"]
 
+        # Users Registered (box)
         @stats_new_users = @stats_data["newusers_ytd"]["total"]
 
+        # Collection Stats (table)
         @stats_collection_stats = @stats_data["collection_size"]
         @stats_copies_added = @stats_data["copies_added_ytd"]["total"]
         @stats_copies_withdrawn = @stats_data["copies_withdrawn_ytd"]["total"]
 
-        @circ_hash = Rails.cache.read('circ_weekly')
+        # Weekly Circulation (graph)
         @circ_graph = Hash.new
         @circ_graph[:labels] = @circ_hash['graphdates']
         @circ_graph[:datasets] = Array.new
@@ -68,7 +114,7 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
-        @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
+        # Public Computer Sessions (graph)
         @pubcomp_graph = Hash.new
         @pubcomp_graph[:labels] = @pubcomp_hash['graphdates']
         @pubcomp_graph[:datasets] = Array.new
@@ -106,7 +152,7 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
-        @newusers_hash = Rails.cache.read('newusers_weekly')
+        # New Users (graph)
         @newusers_graph = Hash.new
         @newusers_graph[:labels] = @newusers_hash['graphdates']
         @newusers_graph[:datasets] = Array.new
@@ -144,6 +190,7 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
+        # Collection Movement (graph) TODO
         @collection_movement_graph = {
             labels: ["Book", "Children's Book", "Video", "Compact Disc", "Magazine", "Audiobook"],
             datasets: [
@@ -177,20 +224,12 @@ class ViewController < ApplicationController
         }
         @collection_movement_graph_options = {
             scale: {
-                ticks: {
-                    min: 0,
-                    max: 5000,
-                    stepSize: 1000
-                }
+                ticks: { min: 0, max: 5000, stepSize: 1000 }
             },
-            tooltips: {
-                mode: 'index',
-                axis: 'x',
-                intersect: true,
-                displayColors: false
-            }
+            tooltips: { mode: 'index', axis: 'x', intersect: true, displayColors: false }
         }
 
+        # Wireless Sessions (graph) TODO
         @wireless_graph = {
             labels: ["January", "February", "June", "October"],
             datasets: [
@@ -278,67 +317,29 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
+        # Circulation by Type (graph)
         @circ_type_graph = {
-            labels: ["Books", "Children's Books", "Music", "Movies", "Other"],
+            labels: stats_circ_by_type_graph_labels,
             datasets: [{
-                data: [32, 22, 7, 27, 12],
+                data: stats_circ_by_type_graph_data,
                 label: "Percent",
-                backgroundColor: [
-                    "rgba(57,106,177,0.5)",
-                    "rgba(218,124,48,0.5)",
-                    "rgba(62,150,81,0.5)",
-                    "rgba(204,37,41,0.5)",
-                    "rgba(107,76,154,0.5)"
-                ],
-                borderColor: [
-                    "rgba(57,106,177,1)",
-                    "rgba(218,124,48,1)",
-                    "rgba(62,150,81,1)",
-                    "rgba(204,37,41,1)",
-                    "rgba(107,76,154,1)"
-                ],
-                hoverBackgroundColor: [
-                    "rgba(57,106,177,1)",
-                    "rgba(218,124,48,1)",
-                    "rgba(62,150,81,1)",
-                    "rgba(204,37,41,1)",
-                    "rgba(107,76,154,1)"
-                ]
+                backgroundColor: pie_chart_halftones,
+                borderColor: pie_chart_colors,
+                hoverBackgroundColor: pie_chart_colors
             }]
         }
 
+        # Collection Distribution (graph)
         @collection_dist_graph = {
-            labels: ["Books", "Children's Books", "Music", "Movies", "Other"],
+            labels: stats_collection_size_graph_labels,
             datasets: [{
-                data: [44, 23, 11, 8, 14],
+                data: stats_collection_size_graph_data,
                 label: "Percent",
-                backgroundColor: [
-                    "rgba(57,106,177,0.5)",
-                    "rgba(218,124,48,0.5)",
-                    "rgba(62,150,81,0.5)",
-                    "rgba(204,37,41,0.5)",
-                    "rgba(107,76,154,0.5)"
-                ],
-                borderColor: [
-                    "rgba(57,106,177,1)",
-                    "rgba(218,124,48,1)",
-                    "rgba(62,150,81,1)",
-                    "rgba(204,37,41,1)",
-                    "rgba(107,76,154,1)"
-                ],
-                hoverBackgroundColor: [
-                    "rgba(57,106,177,1)",
-                    "rgba(218,124,48,1)",
-                    "rgba(62,150,81,1)",
-                    "rgba(204,37,41,1)",
-                    "rgba(107,76,154,1)"
-                ]
+                backgroundColor: pie_chart_halftones,
+                borderColor: pie_chart_colors,
+                hoverBackgroundColor: pie_chart_colors
             }]
         }
-
-        @toptenbooks = Rails.cache.read("toptenbooks")
-        @toptenmovies = Rails.cache.read("toptenmovies")
-        @toptenmusic = Rails.cache.read("toptenmusic")
 
     end
 

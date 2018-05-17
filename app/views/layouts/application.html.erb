@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TADL Stats | Traverse Area District Library</title>
+        <title><%= Settings.site_title %></title>
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
-        <meta property="og:title" content="Traverse Area District Library" />
+        <meta property="og:title" content="<%= Settings.system_longname %>" />
         <meta property="og:type" content="website" />
-        <meta property="og:description" content="The Traverse Area District Library Online Catalog" />
-        <meta property="og:url" content="https://catalog.tadl.org/" />
+        <meta property="og:description" content="The <%= Settings.system_longname %> Statistics Dashboard" />
+        <meta property="og:url" content="https://www.tadl.org/stats/" />
         <meta property="og:image" content="" />
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>

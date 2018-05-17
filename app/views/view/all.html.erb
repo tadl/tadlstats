@@ -24,8 +24,8 @@
             <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Wireless Sessions</span>
-                <span class="info-box-number">nil <small>last 12 months</small></span>
-                <p>SSID <code>tadl-patron-wireless</code></p>
+                <span class="info-box-number">nil <small>past 12 months</small></span>
+                <p>SSID <code><%= Settings.wireless_ssid %></code></p>
             </div>
         </div>
     </div>
@@ -70,36 +70,38 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-4 col-md-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Questions Answered</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %></span>
-                <p>at Traverse City, East Bay and Kingsley</p>
+<% if Settings.system_shortname == "TADL" %>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Questions Answered</span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %></span>
+                    <p>at Traverse City, East Bay and Kingsley</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Puppets Circulated</span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Users Registered</span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>this year</small></span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Puppets Circulated</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %></span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Users Registered</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>this year</small></span>
-            </div>
-        </div>
-    </div>
-</div>
+<% end %>
 <div class="row">
     <div class="col-xs-12 col-lg-6">
         <div class="box box-primary box-solid" data-widget="box-widget">
@@ -133,10 +135,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Place Holder</span>
-                    <span class="info-box-number">1,337</span>
+                    <span class="info-box-text">Books in Collection</span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size_books) %></span>
+                    <p>Includes Children's books</p>
                 </div>
             </div>
             <div class="info-box">
@@ -147,10 +150,11 @@
                 </div>
             </div>
             <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Place Holder</span>
-                    <span class="info-box-number">1,337</span>
+                    <span class="info-box-text">Books Circulated</span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_books) %></span>
+                    <p>Past 12 months</p>
                 </div>
             </div>
             <div class="info-box">
@@ -236,56 +240,6 @@
                                     <td><%= "%+.2f" % change.percent_of(original) %>%</td>
                                 </tr>
                             <% end %>
-<!--
-                            <tr>
-                                <td>Book</td>
-                                <td>147,075</td>
-                                <td>4,778</td>
-                                <td>4,319</td>
-                                <td>7% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
-                            </tr>
-                            <tr>
-                                <td>Children's Book</td>
-                                <td>76,607</td>
-                                <td>2,242</td>
-                                <td>2,484</td>
-                                <td>3% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
-                            </tr>
-                            <tr>
-                                <td>Videos</td>
-                                <td>25,824</td>
-                                <td>1,417</td>
-                                <td>448</td>
-                                <td>4% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
-                            </tr>
-                            <tr>
-                                <td>Compact Discs</td>
-                                <td>35,440</td>
-                                <td>917</td>
-                                <td>687</td>
-                                <td>2% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
-                            </tr>
-                            <tr>
-                                <td>Magazine</td>
-                                <td>10,818</td>
-                                <td>2,036</td>
-                                <td>931</td>
-                                <td>4% <i class="fa fa-caret-up"></i><span class="sr-only">increase</span></td>
-                            </tr>
-                            <tr>
-                                <td>Audiobook</td>
-                                <td>10,774</td>
-                                <td>437</td>
-                                <td>715</td>
-                                <td>3% <i class="fa fa-caret-down"></i><span class="sr-only">decrease</span></td>
-                            </tr>
-                            <tr>
-                                <td>Other</td>
-                                <td>24,366</td>
-                                <td>147</td>
-                                <td>158</td>
-                                <td>1% <i class="fa fa-caret-down"></i><span class="sr-only">decrease</span></td>
-                            </tr>  -->
                         </tbody>
                     </table>
                 </div>
