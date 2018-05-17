@@ -53,6 +53,7 @@ locations:
     evergreen_id: 23
     background_color: "rgba(204,37,41,0.5)"
     border_color: "rgba(204,37,41,1)"
+  - name: "kbl"
     short_name: "Kingsley"
     long_name: "Kingsley Branch Library"
     evergreen_name: "TADL-KBL"

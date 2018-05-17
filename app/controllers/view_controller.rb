@@ -24,12 +24,17 @@ class ViewController < ApplicationController
         stats_collection_size_graph_data = Array.new
         stats_collection_size_graph_labels = Array.new
         @stats_collection_size_books = 0
+        @stats_audio_visual_materials = 0
 
         @stats_data["collection_size"]["total"].each do |type, val|
             @stats_collection_size += val.to_i
 
             if type.include? "book"
                 @stats_collection_size_books += val.to_i
+            end
+
+            if (type.include?("movies") || type.include?("music") || type.include?("audiobooks"))
+                @stats_audio_visual_materials += val.to_i
             end
 
             stats_collection_size_graph_data.push(val)
@@ -40,6 +45,7 @@ class ViewController < ApplicationController
         stats_circ_by_type_graph_data = Array.new
         stats_circ_by_type_graph_labels = Array.new
         @stats_circ_by_type_books = 0
+        @stats_circ_by_type_av = 0
 
         @stats_data["circ_by_type_ytd"]["total"].each do |type, val|
             stats_circ_by_type_graph_data.push(val)
@@ -49,7 +55,12 @@ class ViewController < ApplicationController
                 @stats_circ_by_type_books += val.to_i
             end
 
+            if (type.include?("movies") || type.include?("music") || type.include?("audiobooks"))
+                @stats_circ_by_type_av += val.to_i
+            end
+
         end
+
 
         # Computer sessions / users (box)
         @stats_computer_sessions = @stats_data["pubcomp_ytd"]["total"][:sessions]
