@@ -2,22 +2,9 @@
     <div class="sidebar">
         <ul class="sidebar-menu">
             <li class="header">LOCATIONS</li>
-            <li<% if request.path == (view_all_path or '/') %> class="active"<% end %>><a href="<%= view_all_path %>"><span>All Locations</span></a></li>
-            <li<% if request.path == view_eastbay_path %> class="active"<% end %>><a href="<%= view_eastbay_path %>"><span>East Bay</span></a></li>
-            <li<% if request.path == view_fifelake_path %> class="active"<% end %>><a href="<%= view_fifelake_path %>"><span>Fife Lake</span></a></li>
-            <li<% if request.path == view_interlochen_path %> class="active"<% end %>><a href="<%= view_interlochen_path %>"><span>Interlochen</span></a></li>
-            <li<% if request.path == view_kingsley_path %> class="active"<% end %>><a href="<%= view_kingsley_path %>"><span>Kingsley</span></a></li>
-            <li<% if request.path == view_peninsula_path %> class="active"<% end %>><a href="<%= view_peninsula_path %>"><span>Peninsula</span></a></li>
-            <li<% if request.path == view_traversecity_path %> class="active"<% end %>><a href="<%= view_traversecity_path %>"><span>Traverse City</span></a></li>
-            <!--
-            <li class="header">TYPES</li>
-            <li<% if request.path == view_collection_path %> class="active"<% end %>><a href="<%= view_collection_path %>"><span>Collection</span></a></li>
-            <li<% if request.path == view_circulation_path %> class="active"<% end %>><a href="<%= view_circulation_path %>"><span>Circulation</span></a></li>
-            <li<% if request.path == view_wireless_path %> class="active"<% end %>><a href="<%= view_wireless_path %>"><span>Wireless</span></a></li>
-            <li<% if request.path == view_pubcomp_path %> class="active"<% end %>><a href="<%= view_pubcomp_path %>"><span>Public Computers</span></a></li>
-            <li<% if request.path == view_visitors_path %> class="active"<% end %>><a href="<%= view_visitors_path %>"><span>Visitors</span></a></li>
-            <li<% if request.path == view_questions_path %> class="active"<% end %>><a href="<%= view_questions_path %>"><span>Reference Questions</span></a></li>
-            -->
+                <% Settings.menu_items.each do |item| %>
+                    <li<% if request.path == item['actual_path'] %> class="active"<% end %>><a href="<%= item['actual_path'] %>"><span><%= item['name'] %></span></a></li>
+                <% end %>
             <span>
         </ul>
     </div>
