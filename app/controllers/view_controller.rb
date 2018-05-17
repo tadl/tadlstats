@@ -201,13 +201,25 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
-        # Collection Movement (graph) TODO
+        # Collection Movement (graph)
+        @stats_collection_movement_labels = Array.new
+        @stats_collection_movement_additions = Array.new
+        @stats_collection_movement_withdrawls = Array.new
+
+        @stats_data["copies_added_ytd"]["total"].each do |key, val|
+            @stats_collection_movement_labels.push(item_type_map(key))
+            @stats_collection_movement_additions.push(val)
+        end
+        @stats_data["copies_withdrawn_ytd"]["total"].each do |key, val|
+            @stats_collection_movement_withdrawls.push(val)
+        end
+
         @collection_movement_graph = {
-            labels: ["Book", "Children's Book", "Video", "Compact Disc", "Magazine", "Audiobook"],
+            labels: @stats_collection_movement_labels,
             datasets: [
                 {
                     label: "Additions",
-                    data: [4788, 2242, 1417, 917, 2036, 437],
+                    data: @stats_collection_movement_additions,
                     backgroundColor: "rgba(62,150,81,0.5)",
                     borderColor: "rgba(62,150,81,1)",
                     pointRadius: 3,
@@ -220,7 +232,7 @@ class ViewController < ApplicationController
                 },
                 {
                     label: "Withdrawls",
-                    data: [4319, 2484, 448, 687, 931, 715],
+                    data: @stats_collection_movement_withdrawls,
                     backgroundColor: "rgba(204,37,41,0.5)",
                     borderColor: "rgba(204,37,41,1)",
                     pointRadius: 3,

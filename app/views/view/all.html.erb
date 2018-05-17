@@ -51,7 +51,9 @@
                 </div>
             </div>
             <div class="box-body">
-                <%= line_chart @circ_graph, @circ_graph_options %>
+                <div class="chartfix">
+                    <%= line_chart @circ_graph, @circ_graph_options %>
+                </div>
             </div>
         </div>
     </div>
@@ -65,7 +67,9 @@
                 </div>
             </div>
             <div class="box-body">
-                <%= line_chart @wireless_graph, @wireless_graph_options %>
+                <div class="chartfix">
+                    <%= line_chart @wireless_graph, @wireless_graph_options %>
+                </div>
             </div>
         </div>
     </div>
@@ -113,7 +117,9 @@
                 </div>
             </div>
             <div class="box-body">
-                <%= line_chart @pubcomp_graph, @pubcomp_graph_options %>
+                <div class="chartfix">
+                    <%= line_chart @pubcomp_graph, @pubcomp_graph_options %>
+                </div>
             </div>
         </div>
     </div>
@@ -127,44 +133,47 @@
                 </div>
             </div>
             <div class="box-body">
-                <%= line_chart @newusers_graph, @newusers_graph_options %>
+                <div class="chartfix">
+                    <%= line_chart @newusers_graph, @newusers_graph_options %>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Books in Collection</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size_books) %></span>
-                    <p>Includes Children's books</p>
-                </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Books in Collection</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size_books) %></span>
+                <p>Includes Children's books</p>
             </div>
-            <div class="info-box">
-                <span class="info-box-icon bg-blue"><i class="fa fa-play-circle"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Audiovisual Materials</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_audio_visual_materials) %></span>
-                    <p>Audiobooks, Movies and Music</p>
-                </div>
+        </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Books Circulated</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_books) %></span>
+                <p>Past 12 months</p>
             </div>
-            <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Books Circulated</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_books) %></span>
-                    <p>Past 12 months</p>
-                </div>
+        </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-play-circle"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Audiovisual Materials</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_audio_visual_materials) %></span>
+                <p>Audiobooks, Movies and Music</p>
             </div>
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-play-circle"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">AV Materials Circulated</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_av) %></span>
-                </div>
+        </div>
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-play-circle"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">AV Materials Circulated</span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_av) %></span>
+                <p>Past 12 months</p>
             </div>
+        </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="box box-primary box-solid" data-widget="box-widget">
