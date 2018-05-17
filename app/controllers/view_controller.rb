@@ -368,6 +368,17 @@ class ViewController < ApplicationController
 
     def one
         @location = params[:location]
+        Settings.locations.each do |l|
+            if @location == l.path_name
+                @loc = l
+            else
+                redirect_to view_all_path and return
+            end
+
+        end
+
+        # Do all the graphy stuff here and use @loc[.stuff] to filter for a single location
+
     end
 
 end
