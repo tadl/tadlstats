@@ -366,40 +366,7 @@ class ViewController < ApplicationController
 
     end
 
-    def eastbay
-    end
-
-    def fifelake
-    end
-
-    def interlochen
-    end
-
-    def kingsley
-    end
-
-    def peninsula
-    end
-
-    def traversecity
-    end
-
-    def collection
-    end
-
-    def circulation
-    end
-
-    def wireless
-    end
-
-    def pubcomp
-    end
-
-    def visitors
-    end
-
-    def questions
+    def one
     end
 
 end
