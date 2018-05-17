@@ -367,6 +367,7 @@ class ViewController < ApplicationController
     end
 
     def one
+        @location = params[:location]
     end
 
 end
