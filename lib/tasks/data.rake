@@ -119,6 +119,40 @@ namespace :data do
             end
 
             if key == "wireless_weekly"
+                @dates_hash = Hash.new
+                @wireless_hash = Hash.new
+
+                csv.each do |row|
+                    location, date, count = row
+
+                    if !@dates_hash.key?(date)
+                        @dates_hash[date] = Hash.new
+                    end
+
+                    @dates_hash[date].store(location, count)
+                end
+
+                Settings.locations.each do |l|
+                    @wireless_hash[l.short_name] = Array.new
+                end
+
+                @wireless_hash['graphdates'] = Array.new
+
+                @dates_hash.each do |d, e|
+                    @wireless_hash['graphdates'].push(d)
+
+                    Settings.locations.each do |l|
+                        if @dates_hash[d][l.short_name].nil?
+                            @wireless_hash[l.short_name].push(0)
+                        else
+                            @wireless_hash[l.short_name].push(e[l.short_name])
+                        end
+
+                    end
+
+                end
+
+                Rails.cache.write(key, @wireless_hash)
             end
 
         end

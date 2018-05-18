@@ -11,13 +11,14 @@ class ViewController < ApplicationController
         @toptenmovies = Rails.cache.read("toptenmovies")
         @toptenmusic = Rails.cache.read("toptenmusic")
         @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
+        @wireless_hash = Rails.cache.read('wireless_weekly')
         @newusers_hash = Rails.cache.read('newusers_weekly')
 
         # Color definitions for pie/circle graphs
         chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
-                             "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
+                         "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
         chart_halftones = [ "rgba(57,106,177,0.5)", "rgba(218,124,48,0.5)", "rgba(62,150,81,0.5)", "rgba(204,37,41,0.5)",
-                                "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
+                            "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
 
         # Collection Size (box + graph)
         @stats_collection_size = 0
@@ -143,6 +144,45 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
+        # Wireless Sessions (graph)
+        @wireless_graph = Hash.new
+        @wireless_graph[:labels] = @wireless_hash['graphdates']
+        @wireless_graph[:datasets] = Array.new
+
+        Settings.locations.each do |location|
+            loc = Hash.new
+            fill = (Settings.locations.first == location)? "origin" : "-1"
+
+            loc = {
+                label: location.short_name,
+                backgroundColor: location.background_color,
+                borderColor: location.border_color,
+                data: @wireless_hash[location.short_name],
+                fill: fill,
+                pointRadius: 2,
+                pointHitRadius: 1,
+                pointHoverRadius: 5,
+                pointBorderWidth: 1,
+                pointStyle: 'rectRounded'
+            }
+
+            @wireless_graph[:datasets].push(loc)
+        end
+
+        @wireless_graph_options = {
+            width: 1200,
+            height: 480,
+            plugins: { filler: { propogate: true } },
+            scales: {
+                yAxes: [{ stacked: true }],
+                xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
+            },
+            tooltips: { mode: 'index', axis: 'x', intersect: false },
+            animation: { duration: 0 },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+
         # Public Computer Sessions (graph)
         @pubcomp_graph = Hash.new
         @pubcomp_graph[:labels] = @pubcomp_hash['graphdates']
@@ -221,95 +261,6 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
-        # Wireless Sessions (graph) TODO
-        @wireless_graph = {
-            labels: ["January", "February", "June", "October"],
-            datasets: [
-                {
-                    label: "Traverse City",
-                    backgroundColor: "rgba(57,106,177,0.5)",
-                    borderColor: "rgba(57,106,177,1)",
-                    data: [1000, 1500, 1200, 1800],
-                    fill: 'origin',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "East Bay",
-                    backgroundColor: "rgba(218,124,48,0.5)",
-                    borderColor: "rgba(218,124,48,1)",
-                    data: [3800, 3100, 2400, 2800],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Fife Lake",
-                    backgroundColor: "rgba(62,150,81,0.5)",
-                    borderColor: "rgba(62,150,81,1)",
-                    data: [128, 256, 184, 204],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Kingsley",
-                    backgroundColor: "rgba(204,37,41,0.5)",
-                    borderColor: "rgba(204,37,41,1)",
-                    data: [328, 542, 423, 593],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Interlochen",
-                    backgroundColor: "rgba(83,81,84,0.5)",
-                    borderColor: "rgba(83,81,84,1)",
-                    data: [318, 233, 185, 423],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-                {
-                    label: "Peninsula",
-                    backgroundColor: "rgba(107,76,154,0.5)",
-                    borderColor: "rgba(107,76,154,1)",
-                    data: [38, 23, 59, 29],
-                    fill: '-1',
-                    pointRadius: 2,
-                    pointHitRadius: 1,
-                    pointHoverRadius: 5,
-                    pointBorderWidth: 1,
-                    pointStyle: 'rectRounded',
-                },
-            ]
-        }
-        @wireless_graph_options = {
-            width: 1200,
-            height: 480,
-            plugins: { filler: { propogate: true } },
-            scales: { yAxes: [{ stacked: true }] },
-            tooltips: { mode: 'index', axis: 'x', intersect: false },
-            animation: { duration: 0 },
-            responsive: true,
-            maintainAspectRatio: false
-        }
-
         # Collection Distribution (graph)
         @collection_dist_graph = {
             labels: stats_collection_size_graph_labels,
@@ -348,12 +299,13 @@ class ViewController < ApplicationController
         @circ_hash = Rails.cache.read('circ_weekly')
         @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
         @newusers_hash = Rails.cache.read('newusers_weekly')
+        @wireless_hash = Rails.cache.read('wireless_weekly')
 
         # Color definitions for pie/circle graphs
         chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
-                             "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
+                         "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
         chart_halftones = [ "rgba(57,106,177,0.5)", "rgba(218,124,48,0.5)", "rgba(62,150,81,0.5)", "rgba(204,37,41,0.5)",
-                                "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
+                            "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
 
         # Collection Size (box + graph) -
         @stats_collection_size = 0
@@ -419,7 +371,6 @@ class ViewController < ApplicationController
         @stats_computer_sessions = @stats_data["pubcomp_ytd"][@short_name][:sessions]
         @stats_computer_users = @stats_data["pubcomp_ytd"][@short_name][:users]
 
-
         # Items Circulated (box) -
         @stats_items_circulated = 0
 
@@ -427,13 +378,11 @@ class ViewController < ApplicationController
             @stats_items_circulated += val.to_i
         end
 
-
         # Collection Stats (table) -
         @stats_collection_stats = @stats_data["collection_size"]
         @stats_collection_stats_specific = @stats_data["collection_size"][@evergreen_name]
         @stats_copies_added = @stats_data["copies_added_ytd"][@evergreen_name]
         @stats_copies_withdrawn = @stats_data["copies_withdrawn_ytd"][@evergreen_name]
-
 
         # Weekly Circulation (graph) -
         @circ_graph = Hash.new
@@ -543,7 +492,41 @@ class ViewController < ApplicationController
             maintainAspectRatio: false
         }
 
-        # Wireless Sessions (graph) TODO -
+        # Wireless Sessions (graph)
+        @wireless_graph = Hash.new
+        @wireless_graph[:labels] = @wireless_hash['graphdates']
+        @wireless_graph[:datasets] = Array.new
+
+        wirelessloc = Hash.new
+
+        wirelessloc = {
+            label: @loc.short_name,
+            backgroundColor: @loc.background_color,
+            borderColor: @loc.border_color,
+            data: @wireless_hash[@loc.short_name],
+            fill: "origin",
+            pointRadius: 2,
+            pointHitRadius: 1,
+            pointHoverRadius: 5,
+            pointBorderWidth: 1,
+            pointStyle: 'rectRounded'
+        }
+
+        @wireless_graph[:datasets].push(wirelessloc)
+
+        @wireless_graph_options = {
+            width: 1200,
+            height: 480,
+            plugins: { filler: { propogate: true } },
+            scales: {
+                yAxes: [{ stacked: true }],
+                xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
+            },
+            tooltips: { mode: 'index', axis: 'x', intersect: false },
+            animation: { duration: 0 },
+            responsive: true,
+            maintainAspectRatio: false
+        }
 
         # Collection Distribution (graph) -
         @collection_dist_graph = {
