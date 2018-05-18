@@ -1,16 +1,14 @@
 <header class="main-header">
-    <a class="logo" href="/">
-        <span class="logo"><%= image_tag Settings.brand_logo, :class => "brand", :alt => "logo" %><%= Settings.nav_title %></span>
-    </a>
-
     <nav class="navbar navbar-static-top" role="navigation">
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
-        <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-            </ul>
+        <a class="logo" href="/"><%= image_tag Settings.brand_logo, :class => "brand", :alt => "logo" %><%= Settings.nav_title %></a>
+        <div class="container">
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <% Settings.menu_items.each do |item| %>
+                        <li<% if request.path == item['actual_path'] %> class="active"<% end %>><a href="<%= item['actual_path'] %>"><span><%= item['name'] %></span></a></li>
+                    <% end %>
+                </ul>
+            </div>
         </div>
-        <span class="header-text"><%= @longname %></span>
     </nav>
 </header>
