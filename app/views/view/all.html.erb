@@ -141,6 +141,21 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-9">
+        <div class="box box-primary box-solid" data-widget="box-widget">
+            <div class="box-header">
+                <h3 class="box-title">Circulation Statistics <small>(past 12 months)</small></h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chartfix">
+                    <%= bar_chart @circ_type_graph, @circ_type_graph_options %>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
@@ -175,33 +190,6 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Circulation Stats</h3>
-                <div class="box-tools">
-                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <p><span class="emphasize">so far</span> this year, <span class="emphasize">125,397</span> books, <span class="emphasize">85,592</span> children's books, <span class="emphasize">105,212</span> movies, <span class="emphasize">28,453</span> albums, <span class="emphasize">4,162</span> magazines, <span class="emphasize">16,352</span> audiobooks and <span class="emphasize">479</span> puppets circulated. </p>
-                <p>need to do something more with this area, or figure out a better layout</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Circulation by Type</h3>
-                <div class="box-tools">
-                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <%= doughnut_chart @circ_type_graph %>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3">
@@ -217,10 +205,10 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-12 col-sm-6 col-md-9">
         <div class="box box-primary box-solid" data-widget="box-widget">
             <div class="box-header">
-                <h3 class="box-title">Collection Stats</h3>
+                <h3 class="box-title">Collection Statistics</h3>
                 <div class="box-tools">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                 </div>
@@ -253,19 +241,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-3">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Collection Movement</h3>
-                <div class="box-tools">
-                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <%= radar_chart @collection_movement_graph, @collection_movement_graph_options %>
             </div>
         </div>
     </div>
