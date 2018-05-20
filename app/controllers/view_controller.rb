@@ -392,7 +392,7 @@ class ViewController < ApplicationController
         circloc = Hash.new
 
         circloc = {
-            label: @loc.short_name,
+            label: "Circulations",
             backgroundColor: @loc.background_color,
             borderColor: @loc.border_color,
             data: @circ_hash[@loc.evergreen_name],
@@ -414,6 +414,7 @@ class ViewController < ApplicationController
                 yAxes: [{ stacked: true }],
                 xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
             },
+            legend: { display: false },
             animation: { duration: 0 },
             tooltips: { mode: 'index', axis: 'x', intersect: false },
             responsive: true,
@@ -428,7 +429,7 @@ class ViewController < ApplicationController
         pubcomploc = Hash.new
 
         pubcomploc = {
-            label: @loc.short_name,
+            label: "Sessions",
             backgroundColor: @loc.background_color,
             borderColor: @loc.border_color,
             data: @pubcomp_hash['sessions'][@loc.short_name],
@@ -450,6 +451,7 @@ class ViewController < ApplicationController
                 yAxes: [{ stacked: true }],
                 xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
             },
+            legend: { display: false },
             tooltips: { mode: 'index', axis: 'x', intersect: false },
             animation: { duration: 0 },
             responsive: true,
@@ -464,7 +466,7 @@ class ViewController < ApplicationController
         usersloc = Hash.new
 
         usersloc = {
-            label: @loc.short_name,
+            label: "Users",
             backgroundColor: @loc.background_color,
             borderColor: @loc.border_color,
             data: @newusers_hash[@loc.evergreen_name],
@@ -487,6 +489,7 @@ class ViewController < ApplicationController
                 xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
             },
             tooltips: { mode: 'index', axis: 'x', intersect: false },
+            legend: { display: false },
             animation: { duration: 0 },
             responsive: true,
             maintainAspectRatio: false
@@ -500,7 +503,7 @@ class ViewController < ApplicationController
         wirelessloc = Hash.new
 
         wirelessloc = {
-            label: @loc.short_name,
+            label: "Sessions",
             backgroundColor: @loc.background_color,
             borderColor: @loc.border_color,
             data: @wireless_hash[@loc.short_name],
@@ -523,6 +526,7 @@ class ViewController < ApplicationController
                 xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
             },
             tooltips: { mode: 'index', axis: 'x', intersect: false },
+            legend: { display: false },
             animation: { duration: 0 },
             responsive: true,
             maintainAspectRatio: false

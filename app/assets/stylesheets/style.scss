@@ -77,6 +77,13 @@
 ==================================================*/
 
 /*==========  Mobile First Method  ==========*/
+/* even tinier */
+@media only screen and (min-width : 240px) {
+    .fixed .content-wrapper {
+        padding-top: 50px;
+    }
+
+}
 
 /* Custom, iPhone Retina */ 
 @media only screen and (min-width : 320px) {
@@ -90,11 +97,17 @@
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
+    .fixed .content-wrapper {
+        padding-top: 100px;
+    }
 
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
+    .fixed .content-wrapper {
+        padding-top: 50px;
+    }
 
 }
 
