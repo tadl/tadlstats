@@ -49,7 +49,7 @@ namespace :data do
                 end
 
                 csv.each do |row|
-                    location, date, sessions, seconds = row
+                    location, date, sessions = row
 
                     if !@dates_hash.key?(date)
                         @dates_hash[date] = Hash.new
@@ -181,7 +181,7 @@ namespace :data do
             topten[key] = Hash.new
 
             csv.each do |row|
-                id, title, author, year, abstract, count = row
+                id, count = row
                 response = JSON.parse(open(detailurl + id).read)
 
                 if response['author'].include? ","
