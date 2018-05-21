@@ -22,8 +22,8 @@ Bundler.require(*Rails.groups)
 module Tadlstats
   class Application < Rails::Application
     config.load_defaults 5.2
-
     Settings.add_source!("#{Rails.root}/config/settings/" + ENV["SYSTEM"] + ".yml")
     Settings.reload!
   end
+
 end
