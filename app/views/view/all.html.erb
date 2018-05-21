@@ -80,7 +80,7 @@
                 <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Questions Answered</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %></span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %> <small>past 12 months</small></span>
                     <p>at Traverse City, East Bay and Kingsley</p>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Puppets Circulated</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %></span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %> <small>past 12 months</small></span>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                 <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Users Registered</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>this year</small></span>
+                    <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>past 12 months</small></span>
                 </div>
             </div>
         </div>
