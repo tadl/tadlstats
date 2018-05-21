@@ -8,7 +8,7 @@ namespace :data do
       "circ_weekly" => Settings.circ_weekly_url,
       "wireless_weekly" => Settings.wireless_weekly_url,
       "pubcomp_weekly" => Settings.pubcomp_weekly_url,
-      "newusers_weekly" => Settings.newusers_weekly_url
+      "newusers_weekly" => Settings.newusers_weekly_url,
     }
 
     graphs.each do |key, link|
@@ -165,7 +165,7 @@ namespace :data do
     lists = {
       "books" => Settings.top10books_url,
       "movies" => Settings.top10movies_url,
-      "music" => Settings.top10music_url
+      "music" => Settings.top10music_url,
     }
 
     detailurl = Settings.item_details_prefix
@@ -217,7 +217,7 @@ namespace :data do
       "newusers_12months" => Settings.newusers_12months_url,
       "pubcomp_12months" => Settings.pubcomp_12months_url,
       "soft_stat_questions_12months" => Settings.soft_stat_questions_12months_url,
-      "wireless_12months" => Settings.wireless_12months_url
+      "wireless_12months" => Settings.wireless_12months_url,
     }
 
     @statsdata = Hash.new

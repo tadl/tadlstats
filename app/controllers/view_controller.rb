@@ -69,7 +69,7 @@ class ViewController < ApplicationController
         label: "Circulations",
         backgroundColor: chart_halftones,
         borderColor: chart_colors,
-        hoverBackgroundColor: chart_colors
+        hoverBackgroundColor: chart_colors,
       }]
     }
 
@@ -124,7 +124,7 @@ class ViewController < ApplicationController
         pointHitRadius: 1,
         pointHoverRadius: 5,
         pointBorderWidth: 1,
-        pointStyle: 'rectRounded'
+        pointStyle: 'rectRounded',
       }
 
       @circ_graph[:datasets].push(loc)
@@ -141,7 +141,7 @@ class ViewController < ApplicationController
       tooltips: { mode: 'index', axis: 'x', intersect: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # Wireless Sessions (graph)
@@ -163,7 +163,7 @@ class ViewController < ApplicationController
         pointHitRadius: 1,
         pointHoverRadius: 5,
         pointBorderWidth: 1,
-        pointStyle: 'rectRounded'
+        pointStyle: 'rectRounded',
       }
 
       @wireless_graph[:datasets].push(loc)
@@ -180,7 +180,7 @@ class ViewController < ApplicationController
       tooltips: { mode: 'index', axis: 'x', intersect: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # Public Computer Sessions (graph)
@@ -202,7 +202,7 @@ class ViewController < ApplicationController
         pointHitRadius: 1,
         pointHoverRadius: 5,
         pointBorderWidth: 1,
-        pointStyle: 'rectRounded'
+        pointStyle: 'rectRounded',
       }
 
       @pubcomp_graph[:datasets].push(loc)
@@ -219,7 +219,7 @@ class ViewController < ApplicationController
       tooltips: { mode: 'index', axis: 'x', intersect: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # New Users (graph)
@@ -241,7 +241,7 @@ class ViewController < ApplicationController
         pointHitRadius: 1,
         pointHoverRadius: 5,
         pointBorderWidth: 1,
-        pointStyle: 'rectRounded'
+        pointStyle: 'rectRounded',
       }
 
       @newusers_graph[:datasets].push(loc)
@@ -258,7 +258,7 @@ class ViewController < ApplicationController
       tooltips: { mode: 'index', axis: 'x', intersect: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # Collection Distribution (graph)
@@ -269,7 +269,7 @@ class ViewController < ApplicationController
         label: "Percent",
         backgroundColor: chart_halftones,
         borderColor: chart_colors,
-        hoverBackgroundColor: chart_colors
+        hoverBackgroundColor: chart_colors,
       }]
     }
 
@@ -356,7 +356,7 @@ class ViewController < ApplicationController
         label: "Circulations",
         backgroundColor: chart_halftones,
         borderColor: chart_colors,
-        hoverBackgroundColor: chart_colors
+        hoverBackgroundColor: chart_colors,
       }]
     }
 
@@ -401,7 +401,7 @@ class ViewController < ApplicationController
       pointHitRadius: 1,
       pointHoverRadius: 5,
       pointBorderWidth: 1,
-      pointStyle: 'rectRounded'
+      pointStyle: 'rectRounded',
     }
 
     @circ_graph[:datasets].push(circloc)
@@ -418,7 +418,7 @@ class ViewController < ApplicationController
       animation: { duration: 0 },
       tooltips: { mode: 'index', axis: 'x', intersect: false },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # Public Computer Sessions (graph)
@@ -438,7 +438,7 @@ class ViewController < ApplicationController
       pointHitRadius: 1,
       pointHoverRadius: 5,
       pointBorderWidth: 1,
-      pointStyle: 'rectRounded'
+      pointStyle: 'rectRounded',
     }
 
     @pubcomp_graph[:datasets].push(pubcomploc)
@@ -455,7 +455,7 @@ class ViewController < ApplicationController
       tooltips: { mode: 'index', axis: 'x', intersect: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # New Users (graph)
@@ -475,7 +475,7 @@ class ViewController < ApplicationController
       pointHitRadius: 1,
       pointHoverRadius: 5,
       pointBorderWidth: 1,
-      pointStyle: 'rectRounded'
+      pointStyle: 'rectRounded',
     }
 
     @newusers_graph[:datasets].push(usersloc)
@@ -492,7 +492,7 @@ class ViewController < ApplicationController
       legend: { display: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # Wireless Sessions (graph)
@@ -512,7 +512,7 @@ class ViewController < ApplicationController
       pointHitRadius: 1,
       pointHoverRadius: 5,
       pointBorderWidth: 1,
-      pointStyle: 'rectRounded'
+      pointStyle: 'rectRounded',
     }
 
     @wireless_graph[:datasets].push(wirelessloc)
@@ -529,7 +529,7 @@ class ViewController < ApplicationController
       legend: { display: false },
       animation: { duration: 0 },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     }
 
     # Collection Distribution (graph)
@@ -540,7 +540,7 @@ class ViewController < ApplicationController
         label: "Percent",
         backgroundColor: chart_halftones,
         borderColor: chart_colors,
-        hoverBackgroundColor: chart_colors
+        hoverBackgroundColor: chart_colors,
       }]
     }
 
