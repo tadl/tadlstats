@@ -162,11 +162,10 @@ namespace :data do
     require 'open-uri'
     require 'csv'
 
-    lists = {
-      "books" => Settings.top10books_url,
-      "movies" => Settings.top10movies_url,
-      "music" => Settings.top10music_url,
-    }
+    lists = {}
+    Settings.toptens.each do |list|
+      lists[list.name] = list.url
+    end
 
     detailurl = Settings.item_details_prefix
     topten = Hash.new
@@ -193,13 +192,14 @@ namespace :data do
         year = response['record_year']
         abstract = response['abstract']
         contents = response['contents']
+        format_type = response['format_type']
 
-        topten[key].store(id, {:count => count, :author => author, :title => title, :year => year, :abstract => abstract, :contents => contents})
+        topten[key].store(id, {:count => count, :format_type => format_type, :author => author, :title => title, :year => year, :abstract => abstract, :contents => contents})
       end
 
-      Rails.cache.write("topten" + key, topten[key])
     end
 
+    Rails.cache.write("topten", topten)
     Rails.cache.write('lists_updated', Time.now)
   end
 

@@ -19,17 +19,14 @@ newusers_12months_url: "https://www.tadl.org/statsdata/tadl/newusers-12months.cs
 pubcomp_weekly_url: "https://www.tadl.org/statsdata/tadl/pubcomp-weekly.csv"
 pubcomp_12months_url: "https://www.tadl.org/statsdata/tadl/pubcomp-12months.csv"
 soft_stat_questions_12months_url: "https://www.tadl.org/statsdata/tadl/soft-stat-questions-12months.csv"
-top10books_url: "https://www.tadl.org/statsdata/tadl/top10books.csv"
-top10movies_url: "https://www.tadl.org/statsdata/tadl/top10movies.csv"
-top10music_url: "https://www.tadl.org/statsdata/tadl/top10music.csv"
 wireless_weekly_url: "https://www.tadl.org/statsdata/tadl/wireless-weekly.csv"
 wireless_12months_url: "https://www.tadl.org/statsdata/tadl/wireless-12months.csv"
 toptens:
-  - name: "books"
+  - name: "Books"
     url: "https://www.tadl.org/statsdata/tadl/top10books.csv"
-  - name: "movies"
+  - name: "Movies"
     url: "https://www.tadl.org/statsdata/tadl/top10movies.csv"
-  - name: "music"
+  - name: "Music"
     url: "https://www.tadl.org/statsdata/tadl/top10music.csv"
 multi_location: true
 locations:

@@ -7,9 +7,7 @@ class ViewController < ApplicationController
   def all
     @stats_data = Rails.cache.read('stats_data')
     @circ_hash = Rails.cache.read('circ_weekly')
-    @toptenbooks = Rails.cache.read("toptenbooks")
-    @toptenmovies = Rails.cache.read("toptenmovies")
-    @toptenmusic = Rails.cache.read("toptenmusic")
+    @topten = Rails.cache.read("topten")
     @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
     @wireless_hash = Rails.cache.read('wireless_weekly')
     @newusers_hash = Rails.cache.read('newusers_weekly')
