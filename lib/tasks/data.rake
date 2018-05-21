@@ -41,11 +41,9 @@ namespace :data do
                 @dates_hash = Hash.new
                 @pubcomp_hash = Hash.new
                 @pubcomp_hash['sessions'] = Hash.new
-                @pubcomp_hash['seconds'] = Hash.new
 
                 Settings.locations.each do |l|
                     @pubcomp_hash['sessions'][l.short_name] = Array.new
-                    @pubcomp_hash['seconds'][l.short_name] = Array.new
                 end
 
                 csv.each do |row|
@@ -55,7 +53,7 @@ namespace :data do
                         @dates_hash[date] = Hash.new
                     end
 
-                    @dates_hash[date].store(location, [sessions, seconds])
+                    @dates_hash[date].store(location, [sessions])
                 end
 
                 Settings.locations.each do |l|
@@ -70,10 +68,8 @@ namespace :data do
                     Settings.locations.each do |l|
                         if @dates_hash[d][l.short_name].nil?
                             @pubcomp_hash['sessions'][l.short_name].push(0)
-                            @pubcomp_hash['seconds'][l.short_name].push(0)
                         else
                             @pubcomp_hash['sessions'][l.short_name].push(e[l.short_name][0])
-                            @pubcomp_hash['seconds'][l.short_name].push(e[l.short_name][1])
                         end
                     end
                 end
