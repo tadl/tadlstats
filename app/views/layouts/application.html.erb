@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= Settings.site_title %></title>
-        <%= csrf_meta_tags %>
-        <%= csp_meta_tag %>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
-        <meta property="og:title" content="<%= Settings.system_longname %>" />
-        <meta property="og:type" content="website" />
-        <meta property="og:description" content="The <%= Settings.system_longname %> Statistics Dashboard" />
-        <meta property="og:url" content="<%= Settings.stats_url %>" />
-        <meta property="og:image" content="" />
+  <head>
+    <title><%= Settings.site_title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta property="og:title" content="<%= Settings.system_longname %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="The <%= Settings.system_longname %> Statistics Dashboard" />
+    <meta property="og:url" content="<%= Settings.stats_url %>" />
+    <meta property="og:image" content="" />
 
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-        <%= stylesheet_link_tag href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
-    </head>
+    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+  </head>
 
-    <body class="fixed skin-blue-light layout-top-nav" style="height: auto; min-height: 100%;">
-        <div class="wrapper" style="height: auto; min-height: 100%;">
-            <%= render 'layouts/header' %>
-            <div class="content-wrapper">
-                <div style="padding: 5px;">
-                    <%= yield %>
-                </div>
-            </div>
+  <body class="fixed skin-blue-light layout-top-nav" style="height: auto; min-height: 100%;">
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+      <%= render 'layouts/header' %>
+      <div class="content-wrapper">
+        <div style="padding: 5px;">
+          <%= yield %>
         </div>
-    </body>
+      </div>
+    </div>
+  </body>
 </html>

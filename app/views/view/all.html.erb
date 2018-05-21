@@ -1,348 +1,348 @@
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-archive"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Collection Size</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size) %> <small>items</small></span>
-                <p>Books, movies, music and more!</p>
-            </div>
-        </div>
+  <div class="col-lg-3 col-md-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-green"><i class="fa fa-archive"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Collection Size</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size) %> <small>items</small></span>
+        <p>Books, movies, music and more!</p>
+      </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Computer Sessions</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %> <small>past 12 months</small></span>
-                <p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</span>
-            </div>
-        </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Computer Sessions</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %> <small>past 12 months</small></span>
+        <p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</span>
+      </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Wireless Sessions</span>
-                <span class="info-box-number">nil <small>past 12 months</small></span>
-                <p>SSID <code><%= Settings.wireless_ssid %></code></p>
-            </div>
-        </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Wireless Sessions</span>
+        <span class="info-box-number">nil <small>past 12 months</small></span>
+        <p>SSID <code><%= Settings.wireless_ssid %></code></p>
+      </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-blue"><i class="fa fa-book"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Items Circulated</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_items_circulated) %></span>
-                <p>In the past 12 months</p>
-                <p>
-            </div>
-        </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-blue"><i class="fa fa-book"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Items Circulated</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_items_circulated) %></span>
+        <p>In the past 12 months</p>
+        <p>
+      </div>
     </div>
+  </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-lg-6">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Weekly Circulation</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="chartfix">
-                    <%= line_chart @circ_graph, @circ_graph_options %>
-                </div>
-            </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">Weekly Circulation</h3>
+        <div class="box-tools">
+          <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
         </div>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Wireless Sessions</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="chartfix">
-                    <%= line_chart @wireless_graph, @wireless_graph_options %>
-                </div>
-            </div>
+      </div>
+      <div class="box-body">
+        <div class="chartfix">
+          <%= line_chart @circ_graph, @circ_graph_options %>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">Wireless Sessions</h3>
+        <div class="box-tools">
+          <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="chartfix">
+          <%= line_chart @wireless_graph, @wireless_graph_options %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <% if Settings.system_shortname == "TADL" && Settings.menu_items[0]['actual_path'] == request.path %>
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Questions Answered</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %> <small>past 12 months</small></span>
-                    <p>at Traverse City, East Bay and Kingsley</p>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="fa fa-comments"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Questions Answered</span>
+          <span class="info-box-number"><%= number_with_delimiter(@stats_questions_answered) %> <small>past 12 months</small></span>
+          <p>at Traverse City, East Bay and Kingsley</p>
         </div>
-        <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Puppets Circulated</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %> <small>past 12 months</small></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Users Registered</span>
-                    <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>past 12 months</small></span>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Puppets Circulated</span>
+          <span class="info-box-number"><%= number_with_delimiter(@stats_puppets_circulated) %> <small>past 12 months</small></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Users Registered</span>
+          <span class="info-box-number"><%= number_with_delimiter(@stats_new_users) %> <small>past 12 months</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <div class="row">
-    <div class="col-xs-12 col-lg-6">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Public Computer Sessions</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="chartfix">
-                    <%= line_chart @pubcomp_graph, @pubcomp_graph_options %>
-                </div>
-            </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">Public Computer Sessions</h3>
+        <div class="box-tools">
+          <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
         </div>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">New Users</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="chartfix">
-                    <%= line_chart @newusers_graph, @newusers_graph_options %>
-                </div>
-            </div>
+      </div>
+      <div class="box-body">
+        <div class="chartfix">
+          <%= line_chart @pubcomp_graph, @pubcomp_graph_options %>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">New Users</h3>
+        <div class="box-tools">
+          <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="chartfix">
+          <%= line_chart @newusers_graph, @newusers_graph_options %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Circulation Statistics <small>(past 12 months)</small></h3>
-                <div class="box-tools">
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="chartfix">
-                    <%= bar_chart @circ_type_graph, @circ_type_graph_options %>
-                </div>
-            </div>
+  <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">Circulation Statistics <small>(past 12 months)</small></h3>
+        <div class="box-tools">
         </div>
+      </div>
+      <div class="box-body">
+        <div class="chartfix">
+          <%= bar_chart @circ_type_graph, @circ_type_graph_options %>
+        </div>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Books in Collection</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size_books) %></span>
-                <p>Includes Children's books</p>
-            </div>
-        </div>
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Books Circulated</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_books) %></span>
-                <p>Past 12 months</p>
-            </div>
-        </div>
-        <div class="info-box">
-            <span class="info-box-icon bg-blue"><i class="fa fa-play-circle"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Audiovisual Materials</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_audio_visual_materials) %></span>
-                <p>Audiobooks, Movies and Music</p>
-            </div>
-        </div>
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-play-circle"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">AV Materials Circulated</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_av) %></span>
-                <p>Past 12 months</p>
-            </div>
-        </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="info-box">
+      <span class="info-box-icon bg-green"><i class="fa fa-book"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Books in Collection</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size_books) %></span>
+        <p>Includes Children's books</p>
+      </div>
     </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Books Circulated</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_books) %></span>
+        <p>Past 12 months</p>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-blue"><i class="fa fa-play-circle"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Audiovisual Materials</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_audio_visual_materials) %></span>
+        <p>Audiobooks, Movies and Music</p>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-yellow"><i class="fa fa-play-circle"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">AV Materials Circulated</span>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_circ_by_type_av) %></span>
+        <p>Past 12 months</p>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Collection Distribution</h3>
-                <div class="box-tools">
-                </div>
-            </div>
-            <div class="box-body">
-                <%= doughnut_chart @collection_dist_graph %>
-            </div>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">Collection Distribution</h3>
+        <div class="box-tools">
         </div>
+      </div>
+      <div class="box-body">
+        <%= doughnut_chart @collection_dist_graph %>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-8">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Collection Statistics</h3>
-                <div class="box-tools">
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <caption>Cumulative collection statistics from the last 12 months.</caption>
-                        <thead>
-                            <tr>
-                                <td><strong>Type</strong></td>
-                                <td><strong>Count</strong></td>
-                                <td><strong>Added</strong></td>
-                                <td><strong>Withdrawn</strong></td>
-                                <td><strong>Change</strong></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @stats_collection_stats["total"].each do |k, v| %>
-                                <tr>
-                                    <td><%= item_type_map(k) %></td>
-                                    <td><%= number_with_delimiter(v) %></td>
-                                    <td><%= number_with_delimiter(@stats_copies_added[k]) %></td>
-                                    <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) %></td>
-                                    <% original = v + @stats_copies_withdrawn[k] - @stats_copies_added[k] %>
-                                    <% change = v - original %>
-                                    <td><%= "%+.2f" % change.percent_of(original) %>%</td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="box box-primary box-solid" data-widget="box-widget">
+      <div class="box-header">
+        <h3 class="box-title">Collection Statistics</h3>
+        <div class="box-tools">
         </div>
+      </div>
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <caption>Cumulative collection statistics from the last 12 months.</caption>
+            <thead>
+              <tr>
+                <td><strong>Type</strong></td>
+                <td><strong>Count</strong></td>
+                <td><strong>Added</strong></td>
+                <td><strong>Withdrawn</strong></td>
+                <td><strong>Change</strong></td>
+              </tr>
+            </thead>
+            <tbody>
+              <% @stats_collection_stats["total"].each do |k, v| %>
+                <tr>
+                  <td><%= item_type_map(k) %></td>
+                  <td><%= number_with_delimiter(v) %></td>
+                  <td><%= number_with_delimiter(@stats_copies_added[k]) %></td>
+                  <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) %></td>
+                  <% original = v + @stats_copies_withdrawn[k] - @stats_copies_added[k] %>
+                  <% change = v - original %>
+                  <td><%= "%+.2f" % change.percent_of(original) %>%</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <% if Settings.menu_items[0]['actual_path'] == request.path %>
-    <div class="row">
-        <div class="col-xs-12 col-md-4">
-            <div class="box box-primary box-solid" data-widget="box-widget">
-                <div class="box-header">
-                    <h3 class="box-title">Most Popular Books</h3>
-                    <div class="box-tools">
-                        <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <% @toptenbooks.each do |id, book| %>
-                        <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
-                            <div class="media"><!-- media item -->
-                                <div class="media-left">
-                                    <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
-                                    <p><strong><%= book[:author] %></strong>, <%= book[:year] %></p>
-                                    <% if !book[:abstract].empty? %>
-                                        <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
-                                    <% end %>
-                                    <% if !book[:contents].empty? && book[:abstract].empty? %>
-                                        <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
-                                    <% end %>
-                                </div>
-                            </div><!-- end media item -->
-                        </a>
-                    <% end %>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <div class="box box-primary box-solid" data-widget="box-widget">
+        <div class="box-header">
+          <h3 class="box-title">Most Popular Books</h3>
+          <div class="box-tools">
+            <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+          </div>
         </div>
-        <div class="col-xs-12 col-md-4">
-            <div class="box box-primary box-solid" data-widget="box-widget">
-                <div class="box-header">
-                    <h3 class="box-title">Most Popular Movies</h3>
-                    <div class="box-tools">
-                        <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                    </div>
+        <div class="box-body">
+          <% @toptenbooks.each do |id, book| %>
+            <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+              <div class="media"><!-- media item -->
+                <div class="media-left">
+                  <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
                 </div>
-                <div class="box-body">
-                    <% @toptenmovies.each do |id, book| %>
-                        <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
-                            <div class="media"><!-- media item -->
-                                <div class="media-left">
-                                    <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %><% if !book[:year].empty? %> <small>(<%= book[:year] %>)</small><% end %></h4>
-                                    <% if !book[:abstract].empty? %>
-                                        <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
-                                    <% end %>
-                                    <% if !book[:contents].empty? && book[:abstract].empty? %>
-                                        <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
-                                    <% end %>
-                                </div>
-                            </div><!-- end media item -->
-                        </a>
-                    <% end %>
+                <div class="media-body">
+                  <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
+                  <p><strong><%= book[:author] %></strong>, <%= book[:year] %></p>
+                  <% if !book[:abstract].empty? %>
+                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                  <% end %>
+                  <% if !book[:contents].empty? && book[:abstract].empty? %>
+                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                  <% end %>
                 </div>
-            </div>
+              </div><!-- end media item -->
+            </a>
+          <% end %>
         </div>
-        <div class="col-xs-12 col-md-4">
-            <div class="box box-primary box-solid" data-widget="box-widget">
-                <div class="box-header">
-                    <h3 class="box-title">Most Popular Music</h3>
-                    <div class="box-tools">
-                        <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <% @toptenmusic.each do |id, book| %>
-                        <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
-                            <div class="media"><!-- media item -->
-                                <div class="media-left">
-                                    <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
-                                    <p><strong><%= book[:author] %></strong><% if !book[:author].empty? && !book[:year].empty? %>, <% end %><% if !book[:year].empty? %><%= book[:year] %><% end %></p>
-                                    <% if !book[:abstract].empty? %>
-                                        <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
-                                    <% end %>
-                                    <% if !book[:contents].empty? && book[:abstract].empty? %>
-                                        <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
-                                    <% end %>
-                                </div>
-                            </div><!-- end media item -->
-                        </a>
-                    <% end %>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="box box-primary box-solid" data-widget="box-widget">
+        <div class="box-header">
+          <h3 class="box-title">Most Popular Movies</h3>
+          <div class="box-tools">
+            <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+          <% @toptenmovies.each do |id, book| %>
+            <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+              <div class="media"><!-- media item -->
+                <div class="media-left">
+                  <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %><% if !book[:year].empty? %> <small>(<%= book[:year] %>)</small><% end %></h4>
+                  <% if !book[:abstract].empty? %>
+                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                  <% end %>
+                  <% if !book[:contents].empty? && book[:abstract].empty? %>
+                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                  <% end %>
+                </div>
+              </div><!-- end media item -->
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="box box-primary box-solid" data-widget="box-widget">
+        <div class="box-header">
+          <h3 class="box-title">Most Popular Music</h3>
+          <div class="box-tools">
+            <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+          <% @toptenmusic.each do |id, book| %>
+            <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+              <div class="media"><!-- media item -->
+                <div class="media-left">
+                  <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
+                  <p><strong><%= book[:author] %></strong><% if !book[:author].empty? && !book[:year].empty? %>, <% end %><% if !book[:year].empty? %><%= book[:year] %><% end %></p>
+                  <% if !book[:abstract].empty? %>
+                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                  <% end %>
+                  <% if !book[:contents].empty? && book[:abstract].empty? %>
+                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                  <% end %>
+                </div>
+              </div><!-- end media item -->
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <script>
-    $(".toggle-expand-btn.btn.btn-box-tool").on("click", function(event) {
-        $(event.target).closest(".box").toggleClass("panel-fullscreen");
-    });
-    $(".fa-bug").on("click", function(event) {
-        $(this).toggleClass("fa-spin");
-    });
-    $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-    })
+  $(".toggle-expand-btn.btn.btn-box-tool").on("click", function(event) {
+    $(event.target).closest(".box").toggleClass("panel-fullscreen");
+  });
+  $(".fa-bug").on("click", function(event) {
+    $(this).toggleClass("fa-spin");
+  });
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 </script>
