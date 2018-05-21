@@ -24,6 +24,13 @@ top10movies_url: "https://www.tadl.org/statsdata/tadl/top10movies.csv"
 top10music_url: "https://www.tadl.org/statsdata/tadl/top10music.csv"
 wireless_weekly_url: "https://www.tadl.org/statsdata/tadl/wireless-weekly.csv"
 wireless_12months_url: "https://www.tadl.org/statsdata/tadl/wireless-12months.csv"
+toptens:
+  - name: "books"
+    url: "https://www.tadl.org/statsdata/tadl/top10books.csv"
+  - name: "movies"
+    url: "https://www.tadl.org/statsdata/tadl/top10movies.csv"
+  - name: "music"
+    url: "https://www.tadl.org/statsdata/tadl/top10music.csv"
 multi_location: true
 locations:
   - name: "wood"
