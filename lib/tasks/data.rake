@@ -4,12 +4,11 @@ namespace :data do
     require 'open-uri'
     require 'csv'
 
-    graphs = {
-      "circ_weekly" => Settings.circ_weekly_url,
-      "wireless_weekly" => Settings.wireless_weekly_url,
-      "pubcomp_weekly" => Settings.pubcomp_weekly_url,
-      "newusers_weekly" => Settings.newusers_weekly_url,
-    }
+    graphs = {}
+
+    Settings.graphs.each do |graph|
+      graphs[graph.name] = graph.url
+    end
 
     graphs.each do |key, link|
       puts "[graphs task] processing " + key + "... "
@@ -163,7 +162,8 @@ namespace :data do
     require 'csv'
 
     lists = {}
-    Settings.toptens.each do |list|
+
+    Settings.lists.each do |list|
       lists[list.name] = list.url
     end
 
@@ -209,16 +209,11 @@ namespace :data do
     require 'open-uri'
     require 'csv'
 
-    files = {
-      "circ_by_type_12months" => Settings.circ_by_type_12months_url,
-      "collection_size" => Settings.collection_size_url,
-      "copies_added_12months" => Settings.copies_added_12months_url,
-      "copies_withdrawn_12months" => Settings.copies_withdrawn_12months_url,
-      "newusers_12months" => Settings.newusers_12months_url,
-      "pubcomp_12months" => Settings.pubcomp_12months_url,
-      "soft_stat_questions_12months" => Settings.soft_stat_questions_12months_url,
-      "wireless_12months" => Settings.wireless_12months_url,
-    }
+    files = {}
+
+    Settings.stats.each do |stat|
+      files[stat.name] = stat.url
+    end
 
     @statsdata = Hash.new
 
