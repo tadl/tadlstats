@@ -73,7 +73,7 @@
         </div>
     </div>
 </div>
-<% if Settings.system_shortname == "TADL" %>
+<% if Settings.system_shortname == "TADL" && Settings.menu_items[0]['actual_path'] == request.path %>
     <div class="row">
         <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="info-box">
@@ -239,109 +239,110 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12 col-md-4">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Most Popular Books</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+<% if Settings.menu_items[0]['actual_path'] == request.path %>
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="box box-primary box-solid" data-widget="box-widget">
+                <div class="box-header">
+                    <h3 class="box-title">Most Popular Books</h3>
+                    <div class="box-tools">
+                        <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <% @toptenbooks.each do |id, book| %>
+                        <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                            <div class="media"><!-- media item -->
+                                <div class="media-left">
+                                    <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
+                                    <p><strong><%= book[:author] %></strong>, <%= book[:year] %></p>
+                                    <% if !book[:abstract].empty? %>
+                                        <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                                    <% end %>
+                                    <% if !book[:contents].empty? && book[:abstract].empty? %>
+                                        <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                                    <% end %>
+                                </div>
+                            </div><!-- end media item -->
+                        </a>
+                    <% end %>
                 </div>
             </div>
-            <div class="box-body">
-                <% @toptenbooks.each do |id, book| %>
-                    <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
-                        <div class="media"><!-- media item -->
-                            <div class="media-left">
-                                <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
-                                <p><strong><%= book[:author] %></strong>, <%= book[:year] %></p>
-                                <% if !book[:abstract].empty? %>
-                                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
-                                <% end %>
-                                <% if !book[:contents].empty? && book[:abstract].empty? %>
-                                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
-                                <% end %>
-                            </div>
-                        </div><!-- end media item -->
-                    </a>
-                <% end %>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="box box-primary box-solid" data-widget="box-widget">
+                <div class="box-header">
+                    <h3 class="box-title">Most Popular Movies</h3>
+                    <div class="box-tools">
+                        <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <% @toptenmovies.each do |id, book| %>
+                        <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                            <div class="media"><!-- media item -->
+                                <div class="media-left">
+                                    <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %><% if !book[:year].empty? %> <small>(<%= book[:year] %>)</small><% end %></h4>
+                                    <% if !book[:abstract].empty? %>
+                                        <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                                    <% end %>
+                                    <% if !book[:contents].empty? && book[:abstract].empty? %>
+                                        <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                                    <% end %>
+                                </div>
+                            </div><!-- end media item -->
+                        </a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="box box-primary box-solid" data-widget="box-widget">
+                <div class="box-header">
+                    <h3 class="box-title">Most Popular Music</h3>
+                    <div class="box-tools">
+                        <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <% @toptenmusic.each do |id, book| %>
+                        <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
+                            <div class="media"><!-- media item -->
+                                <div class="media-left">
+                                    <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
+                                    <p><strong><%= book[:author] %></strong><% if !book[:author].empty? && !book[:year].empty? %>, <% end %><% if !book[:year].empty? %><%= book[:year] %><% end %></p>
+                                    <% if !book[:abstract].empty? %>
+                                        <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
+                                    <% end %>
+                                    <% if !book[:contents].empty? && book[:abstract].empty? %>
+                                        <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
+                                    <% end %>
+                                </div>
+                            </div><!-- end media item -->
+                        </a>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Most Popular Movies</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <% @toptenmovies.each do |id, book| %>
-                    <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
-                        <div class="media"><!-- media item -->
-                            <div class="media-left">
-                                <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %><% if !book[:year].empty? %> <small>(<%= book[:year] %>)</small><% end %></h4>
-                                <% if !book[:abstract].empty? %>
-                                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
-                                <% end %>
-                                <% if !book[:contents].empty? && book[:abstract].empty? %>
-                                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
-                                <% end %>
-                            </div>
-                        </div><!-- end media item -->
-                    </a>
-                <% end %>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="box box-primary box-solid" data-widget="box-widget">
-            <div class="box-header">
-                <h3 class="box-title">Most Popular Music</h3>
-                <div class="box-tools">
-                    <button class="toggle-expand-btn btn btn-box-tool" title="fullscreen"><i class="fa fa-expand"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <% @toptenmusic.each do |id, book| %>
-                    <a style="text-align: left;" type="button" class="btn btn-clear btn-block" href="<%= Settings.item_details_link_prefix + id.to_s %>">
-                        <div class="media"><!-- media item -->
-                            <div class="media-left">
-                                <img class="media-object cover-image" src="<%= Settings.cover_image_prefix + id.to_s %>" alt="cover image" />
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><button class="btn btn-xs btn-warning circ-count" data-toggle="tooltip" data-placement="top" title="<%= book[:count] %> circulations past 30 days"><%= book[:count] %></button> <%= book[:title] %></h4>
-                                <p><strong><%= book[:author] %></strong><% if !book[:author].empty? && !book[:year].empty? %>, <% end %><% if !book[:year].empty? %><%= book[:year] %><% end %></p>
-                                <% if !book[:abstract].empty? %>
-                                    <p class="abstract"><%= truncate(book[:abstract], :length => 96, :separator => ' ') %></p>
-                                <% end %>
-                                <% if !book[:contents].empty? && book[:abstract].empty? %>
-                                    <p class="contents"><span><%= truncate(book[:contents], :length => 96, :separator => ' ') %></span></p>
-                                <% end %>
-                            </div>
-                        </div><!-- end media item -->
-                    </a>
-                <% end %>
-            </div>
-        </div>
-    </div>
-</div>
+<% end %>
 <script>
-$(".toggle-expand-btn.btn.btn-box-tool").on("click", function(event) {
-    $(event.target).closest(".box").toggleClass("panel-fullscreen");
-    console.log("clicked");
-});
-$(".fa-bug").on("click", function(event) {
-    $(this).toggleClass("fa-spin");
-});
-$(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-})
+    $(".toggle-expand-btn.btn.btn-box-tool").on("click", function(event) {
+        $(event.target).closest(".box").toggleClass("panel-fullscreen");
+    });
+    $(".fa-bug").on("click", function(event) {
+        $(this).toggleClass("fa-spin");
+    });
+    $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>

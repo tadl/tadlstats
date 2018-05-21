@@ -3,6 +3,7 @@ system_longname: "Traverse Area District Library"
 brand_logo: "whitelogo.png"
 nav_title: "TADL Stats"
 wireless_ssid: "tadl-patron-wireless"
+item_types: [["audiobooks", "Audiobooks"], ["books", "Books"], ["childrensbooks", "Children's Books"], ["magazines", "Magazines"], ["music", "Music"], ["movies", "Movies"], ["puppets", "Puppets"], ["other", "Other"]]
 stats_url: "https://www.tadl.org/stats/"
 site_title: "TADL Stats | Traverse Area District Library"
 item_details_prefix: "https://catalog.tadl.org/main/details.json?id="
@@ -30,7 +31,6 @@ locations:
     short_name: "Woodmere"
     long_name: "Traverse City Library"
     evergreen_name: "TADL-WOOD"
-    evergreen_id: 23
     background_color: "rgba(57,106,177,0.5)"
     border_color: "rgba(57,106,177,1)"
   - name: "ebb"
@@ -38,7 +38,6 @@ locations:
     short_name: "East Bay"
     long_name: "East Bay Branch Library"
     evergreen_name: "TADL-EBB"
-    evergreen_id: 23
     background_color: "rgba(218,124,48,0.5)"
     border_color: "rgba(218,124,48,1)"
   - name: "flpl"
@@ -46,7 +45,6 @@ locations:
     short_name: "Fife Lake"
     long_name: "Fife Lake Public Library"
     evergreen_name: "TADL-FLPL"
-    evergreen_id: 23
     background_color: "rgba(62,150,81,0.5)"
     border_color: "rgba(62,150,81,1)"
   - name: "ipl"
@@ -54,7 +52,6 @@ locations:
     short_name: "Interlochen"
     long_name: "Interlochen Public Library"
     evergreen_name: "TADL-IPL"
-    evergreen_id: 23
     background_color: "rgba(204,37,41,0.5)"
     border_color: "rgba(204,37,41,1)"
   - name: "kbl"
@@ -62,7 +59,6 @@ locations:
     short_name: "Kingsley"
     long_name: "Kingsley Branch Library"
     evergreen_name: "TADL-KBL"
-    evergreen_id: 23
     background_color: "rgba(83,81,84,0.5)"
     border_color: "rgba(83,81,84,1)"
   - name: "pcl"
@@ -70,7 +66,6 @@ locations:
     short_name: "Peninsula"
     long_name: "Peninsula Community Library"
     evergreen_name: "TADL-PCL"
-    evergreen_id: 23
     background_color: "rgba(107,76,154,0.5)"
     border_color: "rgba(107,76,154,1)"
 menu_items:
@@ -88,4 +83,3 @@ menu_items:
     actual_path: "/view/peninsula"
   - name: "Traverse City"
     actual_path: "/view/traversecity"
-item_types: [["audiobooks", "Audiobooks"], ["books", "Books"], ["childrensbooks", "Children's Books"], ["magazines", "Magazines"], ["music", "Music"], ["movies", "Movies"], ["puppets", "Puppets"], ["other", "Other"]]
