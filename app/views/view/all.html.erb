@@ -14,7 +14,7 @@
             <span class="info-box-icon bg-red"><i class="fa fa-desktop"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Computer Sessions</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %></span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %> <small>past 12 months</small></span>
                 <p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</span>
             </div>
         </div>
@@ -34,7 +34,8 @@
             <span class="info-box-icon bg-blue"><i class="fa fa-book"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Items Circulated</span>
-                <span class="info-box-number"><%= number_with_delimiter(@stats_items_circulated) %> <small>this year</small></span>
+                <span class="info-box-number"><%= number_with_delimiter(@stats_items_circulated) %></span>
+                <p>In the past 12 months</p>
                 <p>
             </div>
         </div>

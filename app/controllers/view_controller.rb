@@ -48,7 +48,7 @@ class ViewController < ApplicationController
         @stats_circ_by_type_books = 0
         @stats_circ_by_type_av = 0
 
-        @stats_data["circ_by_type_ytd"]["total"].each do |type, val|
+        @stats_data["circ_by_type_12months"]["total"].each do |type, val|
             stats_circ_by_type_graph_data.push(val)
             stats_circ_by_type_graph_labels.push(item_type_map(type))
 
@@ -81,29 +81,29 @@ class ViewController < ApplicationController
         }
 
         # Computer sessions / users (box)
-        @stats_computer_sessions = @stats_data["pubcomp_ytd"]["total"][:sessions]
-        @stats_computer_users = @stats_data["pubcomp_ytd"]["total"][:users]
+        @stats_computer_sessions = @stats_data["pubcomp_12months"]["total"][:sessions]
+        @stats_computer_users = @stats_data["pubcomp_12months"]["total"][:users]
 
         # Items Circulated (box)
         @stats_items_circulated = 0
 
-        @stats_data["circ_by_type_ytd"]["total"].each do |type, val|
+        @stats_data["circ_by_type_12months"]["total"].each do |type, val|
             @stats_items_circulated += val.to_i
         end
 
         # Questions Answered (box)
-        @stats_questions_answered = @stats_data["soft_stat_questions_ytd"]["total"]
+        @stats_questions_answered = @stats_data["soft_stat_questions_12months"]["total"]
 
         # Puppets Circulated (box)
-        @stats_puppets_circulated = @stats_data["circ_by_type_ytd"]["total"]["puppets"]
+        @stats_puppets_circulated = @stats_data["circ_by_type_12months"]["total"]["puppets"]
 
         # Users Registered (box)
-        @stats_new_users = @stats_data["newusers_ytd"]["total"]
+        @stats_new_users = @stats_data["newusers_12months"]["total"]
 
         # Collection Stats (table)
         @stats_collection_stats = @stats_data["collection_size"]
-        @stats_copies_added = @stats_data["copies_added_ytd"]["total"]
-        @stats_copies_withdrawn = @stats_data["copies_withdrawn_ytd"]["total"]
+        @stats_copies_added = @stats_data["copies_added_12months"]["total"]
+        @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"]["total"]
 
         # Weekly Circulation (graph)
         @circ_graph = Hash.new
@@ -335,7 +335,7 @@ class ViewController < ApplicationController
         @stats_circ_by_type_books = 0
         @stats_circ_by_type_av = 0
 
-        @stats_data["circ_by_type_ytd"][@evergreen_name].each do |type, val|
+        @stats_data["circ_by_type_12months"][@evergreen_name].each do |type, val|
             stats_circ_by_type_graph_data.push(val)
             stats_circ_by_type_graph_labels.push(item_type_map(type))
 
@@ -368,21 +368,21 @@ class ViewController < ApplicationController
         }
 
         # Computer sessions / users (box) -
-        @stats_computer_sessions = @stats_data["pubcomp_ytd"][@short_name][:sessions]
-        @stats_computer_users = @stats_data["pubcomp_ytd"][@short_name][:users]
+        @stats_computer_sessions = @stats_data["pubcomp_12months"][@short_name][:sessions]
+        @stats_computer_users = @stats_data["pubcomp_12months"][@short_name][:users]
 
         # Items Circulated (box) -
         @stats_items_circulated = 0
 
-        @stats_data["circ_by_type_ytd"][@evergreen_name].each do |type, val|
+        @stats_data["circ_by_type_12months"][@evergreen_name].each do |type, val|
             @stats_items_circulated += val.to_i
         end
 
         # Collection Stats (table) -
         @stats_collection_stats = @stats_data["collection_size"]
         @stats_collection_stats_specific = @stats_data["collection_size"][@evergreen_name]
-        @stats_copies_added = @stats_data["copies_added_ytd"][@evergreen_name]
-        @stats_copies_withdrawn = @stats_data["copies_withdrawn_ytd"][@evergreen_name]
+        @stats_copies_added = @stats_data["copies_added_12months"][@evergreen_name]
+        @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][@evergreen_name]
 
         # Weekly Circulation (graph) -
         @circ_graph = Hash.new

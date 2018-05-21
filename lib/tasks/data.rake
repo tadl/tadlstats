@@ -214,14 +214,14 @@ namespace :data do
         require 'csv'
 
         files = {
-            "circ_by_type_ytd" => Settings.circ_by_type_ytd_url,
+            "circ_by_type_12months" => Settings.circ_by_type_12months_url,
             "collection_size" => Settings.collection_size_url,
-            "copies_added_ytd" => Settings.copies_added_ytd_url,
-            "copies_withdrawn_ytd" => Settings.copies_withdrawn_ytd_url,
-            "newusers_ytd" => Settings.newusers_ytd_url,
-            "pubcomp_ytd" => Settings.pubcomp_ytd_url,
-            "soft_stat_questions_ytd" => Settings.soft_stat_questions_ytd_url,
-            "wireless_ytd" => Settings.wireless_ytd_url
+            "copies_added_12months" => Settings.copies_added_12months_url,
+            "copies_withdrawn_12months" => Settings.copies_withdrawn_12months_url,
+            "newusers_12months" => Settings.newusers_12months_url,
+            "pubcomp_12months" => Settings.pubcomp_12months_url,
+            "soft_stat_questions_12months" => Settings.soft_stat_questions_12months_url,
+            "wireless_12months" => Settings.wireless_12months_url
         }
 
         @statsdata = Hash.new
@@ -231,7 +231,7 @@ namespace :data do
             csv = CSV.parse(open(link).read(), :headers => false)
             @statsdata[file] = Hash.new
 
-            if file == "circ_by_type_ytd"
+            if file == "circ_by_type_12months"
                 csv.each do |row|
                     loc, type, count = row
                     if !@statsdata[file].key?(loc)
@@ -269,7 +269,7 @@ namespace :data do
                 @statsdata[file]["total"] = @total
             end
 
-            if file == "copies_added_ytd"
+            if file == "copies_added_12months"
                 csv.each do |row|
                     loc, type, count = row
 
@@ -289,7 +289,7 @@ namespace :data do
                 @statsdata[file]["total"] = @total
             end
 
-            if file == "copies_withdrawn_ytd"
+            if file == "copies_withdrawn_12months"
                 csv.each do |row|
                     loc, type, count = row
 
@@ -309,7 +309,7 @@ namespace :data do
                 @statsdata[file]["total"] = @total
             end
 
-            if file == "newusers_ytd"
+            if file == "newusers_12months"
                 @total = 0
 
                 csv.each do |row|
@@ -321,7 +321,7 @@ namespace :data do
                 @statsdata[file]["total"] = @total
             end
 
-            if file == "pubcomp_ytd"
+            if file == "pubcomp_12months"
 
                 csv.each do |row|
                     loc, sessions, seconds, users = row
@@ -339,7 +339,7 @@ namespace :data do
 
             end
 
-            if file == "soft_stat_questions_ytd"
+            if file == "soft_stat_questions_12months"
                 @total = 0
 
                 csv.each do |row|
@@ -351,7 +351,7 @@ namespace :data do
                 @statsdata[file]["total"] = @total
             end
 
-            if file == "wireless_ytd"
+            if file == "wireless_12months"
                 csv.each do |row|
                     loc, count, devices = row
                     if !@statsdata[file].key?(loc)
