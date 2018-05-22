@@ -174,25 +174,30 @@ namespace :data do
       topten[key] = Hash.new
 
       csv.each do |row|
-        id, count = row
-        response = JSON.parse(open(detailurl + id).read)
+        begin
+          id, count = row
+          response = JSON.parse(open(detailurl + id).read)
 
-        if response['author'].include? ","
-          authortmp = response['author'].split(", ")
-          author = authortmp[1] + " " + authortmp[0]
-        else
-          author = response['author']
+          if response['author'].include? ","
+            authortmp = response['author'].split(", ")
+            author = authortmp[1] + " " + authortmp[0]
+          else
+            author = response['author']
+          end
+
+          title = response['title']
+          titlesplit = title.split(" : ")
+          title = titlesplit[0]
+          year = response['record_year']
+          abstract = response['abstract']
+          contents = response['contents']
+          format_type = response['format_type']
+
+          topten[key].store(id, {:count => count, :format_type => format_type, :author => author, :title => title, :year => year, :abstract => abstract, :contents => contents})
+        rescue OpenURI::HTTPError => ex
+          puts id.to_s + " fail! " + ex.to_s
         end
 
-        title = response['title']
-        titlesplit = title.split(" : ")
-        title = titlesplit[0]
-        year = response['record_year']
-        abstract = response['abstract']
-        contents = response['contents']
-        format_type = response['format_type']
-
-        topten[key].store(id, {:count => count, :format_type => format_type, :author => author, :title => title, :year => year, :abstract => abstract, :contents => contents})
       end
 
     end
