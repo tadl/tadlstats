@@ -1,3 +1,5 @@
+theme_skin: "skin-blue-light"
+box_title_color: "blue"
 system_shortname: "SBBDL"
 system_longname: "Suttons Bay Bingham District Library"
 nav_title: "SBBDL Stats"

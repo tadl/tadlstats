@@ -1,6 +1,7 @@
+theme_skin: "skin-blue-light"
+box_title_color: "blue"
 system_shortname: "TADL"
 system_longname: "Traverse Area District Library"
-brand_logo: "whitelogo.png"
 nav_title: "TADL Stats"
 wireless_ssid: "tadl-patron-wireless"
 include_whimsy: true
