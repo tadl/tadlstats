@@ -2,6 +2,7 @@ system_shortname: "SBBDL"
 system_longname: "Suttons Bay Bingham District Library"
 nav_title: "SBBDL Stats"
 wireless_ssid: "idk"
+include_whimsy: false
 item_types: [["audiobooks", "Audiobooks"], ["books", "Books"], ["childrensbooks", "Children's Books"], ["magazines", "Magazines"], ["music", "Music"], ["movies", "Movies"], ["other", "Other"]]
 stats_url: "https://www.sbbdl.org/stats/"
 site_title: "SBBDL Stats | Suttons Bay Bingham District Library"

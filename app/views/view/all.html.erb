@@ -73,7 +73,7 @@
     </div>
   </div>
 </div>
-<% if Settings.system_shortname == "TADL" && Settings.menu_items[0]['actual_path'] == request.path %>
+<% if Settings.include_whimsy == true && Settings.menu_items[0]['actual_path'] == request.path %>
   <div class="row">
     <div class="col-lg-4 col-md-6 col-xs-12">
       <div class="info-box">
@@ -227,8 +227,8 @@
                   <td><%= number_with_delimiter(v) %></td>
                   <td><%= number_with_delimiter(@stats_copies_added[k]) %></td>
                   <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) %></td>
-                  <% original = v + @stats_copies_withdrawn[k] - @stats_copies_added[k] %>
-                  <% change = v - original %>
+                  <% original = v.to_i + @stats_copies_withdrawn[k].to_i - @stats_copies_added[k].to_i %>
+                  <% change = v.to_i - original.to_i %>
                   <td><%= "%+.2f" % change.percent_of(original) %>%</td>
                 </tr>
               <% end %>

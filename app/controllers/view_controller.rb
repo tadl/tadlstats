@@ -11,6 +11,11 @@ class ViewController < ApplicationController
     @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
     @wireless_hash = Rails.cache.read('wireless_weekly')
     @newusers_hash = Rails.cache.read('newusers_weekly')
+    if Settings.multi_location == true
+        all_locations = "total"
+    else
+        all_locations = Settings.system_shortname
+    end
 
     # Color definitions for pie/circle graphs
     chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
@@ -25,7 +30,7 @@ class ViewController < ApplicationController
     @stats_collection_size_books = 0
     @stats_audio_visual_materials = 0
 
-    @stats_data["collection_size"]["total"].each do |type, val|
+    @stats_data["collection_size"][all_locations].each do |type, val|
       @stats_collection_size += val.to_i
 
       if type.include? "book"
@@ -46,7 +51,7 @@ class ViewController < ApplicationController
     @stats_circ_by_type_books = 0
     @stats_circ_by_type_av = 0
 
-    @stats_data["circ_by_type_12months"]["total"].each do |type, val|
+    @stats_data["circ_by_type_12months"][all_locations].each do |type, val|
       stats_circ_by_type_graph_data.push(val)
       stats_circ_by_type_graph_labels.push(item_type_map(type))
 
@@ -79,29 +84,31 @@ class ViewController < ApplicationController
     }
 
     # Computer sessions / users (box)
-    @stats_computer_sessions = @stats_data["pubcomp_12months"]["total"][:sessions]
-    @stats_computer_users = @stats_data["pubcomp_12months"]["total"][:users]
+    @stats_computer_sessions = @stats_data["pubcomp_12months"][all_locations][:sessions]
+    @stats_computer_users = @stats_data["pubcomp_12months"][all_locations][:users]
 
     # Items Circulated (box)
     @stats_items_circulated = 0
 
-    @stats_data["circ_by_type_12months"]["total"].each do |type, val|
+    @stats_data["circ_by_type_12months"][all_locations].each do |type, val|
       @stats_items_circulated += val.to_i
     end
 
-    # Questions Answered (box)
-    @stats_questions_answered = @stats_data["soft_stat_questions_12months"]["total"]
+    if Settings.multi_location == true
+        # Questions Answered (box)
+        @stats_questions_answered = @stats_data["soft_stat_questions_12months"][all_locations]
 
-    # Puppets Circulated (box)
-    @stats_puppets_circulated = @stats_data["circ_by_type_12months"]["total"]["puppets"]
+        # Puppets Circulated (box)
+        @stats_puppets_circulated = @stats_data["circ_by_type_12months"][all_locations]["puppets"]
 
-    # Users Registered (box)
-    @stats_new_users = @stats_data["newusers_12months"]["total"]
+        # Users Registered (box)
+        @stats_new_users = @stats_data["newusers_12months"][all_locations]
+    end
 
     # Collection Stats (table)
     @stats_collection_stats = @stats_data["collection_size"]
-    @stats_copies_added = @stats_data["copies_added_12months"]["total"]
-    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"]["total"]
+    @stats_copies_added = @stats_data["copies_added_12months"][all_locations]
+    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][all_locations]
 
     # Weekly Circulation (graph)
     @circ_graph = {}
