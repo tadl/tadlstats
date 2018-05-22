@@ -31,17 +31,21 @@ class ViewController < ApplicationController
     stats_collection_size_graph_data = []
     stats_collection_size_graph_labels = []
     @stats_collection_size_books = 0
+    @stats_collection_size_books_types = []
     @stats_audio_visual_materials = 0
+    @stats_audio_visual_materials_types = []
 
     @stats_data["collection_size"][all_locations].each do |type, val|
       @stats_collection_size += val.to_i
 
       if type.include? "book"
         @stats_collection_size_books += val.to_i
+        @stats_collection_size_books_types.push(type)
       end
 
       if (type.include?("movies") || type.include?("music") || type.include?("audiobooks"))
         @stats_audio_visual_materials += val.to_i
+        @stats_audio_visual_materials_types.push(type)
       end
 
       stats_collection_size_graph_data.push(val)

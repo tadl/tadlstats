@@ -158,7 +158,15 @@
       <div class="info-box-content">
         <span class="info-box-text">Books in Collection</span>
         <span class="info-box-number"><%= number_with_delimiter(@stats_collection_size_books) %></span>
-        <p>Includes Children's books</p>
+        <p>
+          <% @stats_collection_size_books_types.each do |type| %>
+            <% if type != @stats_collection_size_books_types.last %>
+              <%= item_type_map(type) %> +
+            <% else %>
+              <%= item_type_map(type) %>
+            <% end %>
+          <% end %>
+        </p>
       </div>
     </div>
     <div class="info-box">
@@ -174,7 +182,15 @@
       <div class="info-box-content">
         <span class="info-box-text">Audiovisual Materials</span>
         <span class="info-box-number"><%= number_with_delimiter(@stats_audio_visual_materials) %></span>
-        <p>Audiobooks, Movies and Music</p>
+        <p>
+          <% @stats_audio_visual_materials_types.each do |type| %>
+            <% if type != @stats_audio_visual_materials_types.last %>
+              <%= item_type_map(type) %> +
+            <% else %>
+              <%= item_type_map(type) %>
+            <% end %>
+          <% end %>
+        </p>
       </div>
     </div>
     <div class="info-box">
