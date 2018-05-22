@@ -1,5 +1,5 @@
 theme_skin: "skin-blue-light"
-box_title_color: "blue"
+box_title_color: "primary"
 system_shortname: "TADL"
 system_longname: "Traverse Area District Library"
 nav_title: "TADL Stats"

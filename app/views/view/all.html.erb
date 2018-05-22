@@ -43,7 +43,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-lg-6">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">Weekly Circulation</h3>
         <div class="box-tools">
@@ -58,7 +58,7 @@
     </div>
   </div>
   <div class="col-xs-12 col-lg-6">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">Wireless Sessions</h3>
         <div class="box-tools">
@@ -107,7 +107,7 @@
 <% end %>
 <div class="row">
   <div class="col-xs-12 col-lg-6">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">Public Computer Sessions</h3>
         <div class="box-tools">
@@ -122,7 +122,7 @@
     </div>
   </div>
   <div class="col-xs-12 col-lg-6">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">New Users</h3>
         <div class="box-tools">
@@ -139,7 +139,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-8">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">Circulation Statistics <small>(past 12 months)</small></h3>
         <div class="box-tools">
@@ -205,7 +205,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-4">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">Collection Distribution</h3>
         <div class="box-tools">
@@ -217,7 +217,7 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-8">
-    <div class="box box-primary box-solid" data-widget="box-widget">
+    <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
       <div class="box-header">
         <h3 class="box-title">Collection Statistics</h3>
         <div class="box-tools">
@@ -259,7 +259,7 @@
   <div class="row">
     <% @topten.each do |name, list| %>
       <div class="col-xs-12 col-md-4">
-        <div class="box box-primary box-solid" data-widget="box-widget">
+        <div class="box box-<%= Settings.box_title_color %> box-solid" data-widget="box-widget">
           <div class="box-header">
             <h3 class="box-title">Most Popular <%= name %></h3>
             <div class="box-tools">

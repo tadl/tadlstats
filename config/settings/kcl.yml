@@ -1,5 +1,5 @@
 theme_skin: "skin-green-light"
-box_title_color: "green"
+box_title_color: "success"
 system_shortname: "KCL"
 system_longname: "Kalkaska County Library"
 nav_title: "KCL Stats"
