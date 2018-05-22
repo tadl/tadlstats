@@ -15,7 +15,7 @@
       <div class="info-box-content">
         <span class="info-box-text">Computer Sessions</span>
         <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %> <small>past 12 months</small></span>
-        <p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</span>
+        <% if Settings.pubcomp_unique_users == true %><p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</p><% end %>
       </div>
     </div>
   </div>

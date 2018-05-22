@@ -4,6 +4,7 @@ brand_logo: "whitelogo.png"
 nav_title: "TADL Stats"
 wireless_ssid: "tadl-patron-wireless"
 include_whimsy: true
+pubcomp_unique_users: true
 item_types: [["audiobooks", "Audiobooks"], ["books", "Books"], ["childrensbooks", "Children's Books"], ["magazines", "Magazines"], ["music", "Music"], ["movies", "Movies"], ["puppets", "Puppets"], ["other", "Other"]]
 stats_url: "https://www.tadl.org/stats/"
 site_title: "TADL Stats | Traverse Area District Library"

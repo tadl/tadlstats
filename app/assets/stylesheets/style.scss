@@ -75,6 +75,12 @@
   color: #fff;
 }
 
+.info-box-content p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 
 /*==================================================
 =      Bootstrap 3 Media Queries       =
