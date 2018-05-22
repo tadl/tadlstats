@@ -42,7 +42,7 @@ namespace :data do
         @pubcomp_hash['sessions'] = Hash.new
 
         Settings.locations.each do |l|
-          @pubcomp_hash['sessions'][l.short_name] = Array.new
+          @pubcomp_hash['sessions'][l.pubcomp_name] = Array.new
         end
 
         csv.each do |row|
@@ -56,7 +56,7 @@ namespace :data do
         end
 
         Settings.locations.each do |l|
-          @pubcomp_hash[l.short_name] = Array.new
+          @pubcomp_hash[l.pubcomp_name] = Array.new
         end
 
         @pubcomp_hash['graphdates'] = Array.new
@@ -65,12 +65,14 @@ namespace :data do
           @pubcomp_hash['graphdates'].push(d)
 
           Settings.locations.each do |l|
-            if @dates_hash[d][l.short_name].nil?
-              @pubcomp_hash['sessions'][l.short_name].push(0)
+            if @dates_hash[d][l.pubcomp_name].nil?
+              @pubcomp_hash['sessions'][l.pubcomp_name].push(0)
             else
-              @pubcomp_hash['sessions'][l.short_name].push(e[l.short_name][0])
+              @pubcomp_hash['sessions'][l.pubcomp_name].push(e[l.pubcomp_name][0])
             end
+
           end
+
         end
 
         Rails.cache.write(key, @pubcomp_hash)
@@ -315,13 +317,13 @@ namespace :data do
       if file == "pubcomp_12months"
 
         csv.each do |row|
-          loc, sessions, seconds, users = row
+          loc, sessions, users = row
 
           if !@statsdata[file].key?(loc)
             @statsdata[file][loc] = Hash.new
           end
 
-          @statsdata[file].store(loc, {:sessions => sessions, :seconds => seconds, :users => users})
+          @statsdata[file].store(loc, {:sessions => sessions, :users => users})
         end
 
         if @statsdata[file].key?("tadl")

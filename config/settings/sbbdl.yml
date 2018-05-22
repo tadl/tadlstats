@@ -44,6 +44,7 @@ lists:
 locations:
   - name: "sbbdl"
     path_name: "all"
+    pubcomp_name: "SBBDL"
     short_name: "Suttons Bay"
     long_name: "Suttons Bay Bingham District Library"
     evergreen_name: "SBBDL"

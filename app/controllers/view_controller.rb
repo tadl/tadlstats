@@ -201,7 +201,7 @@ class ViewController < ApplicationController
         label: location.short_name,
         backgroundColor: location.background_color,
         borderColor: location.border_color,
-        data: @pubcomp_hash['sessions'][location.short_name],
+        data: @pubcomp_hash['sessions'][location.pubcomp_name],
         fill: fill,
         pointRadius: 2,
         pointHitRadius: 1,
