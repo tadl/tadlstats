@@ -11,6 +11,9 @@ class ViewController < ApplicationController
     @pubcomp_hash = Rails.cache.read('pubcomp_weekly')
     @wireless_hash = Rails.cache.read('wireless_weekly')
     @newusers_hash = Rails.cache.read('newusers_weekly')
+
+    display_legend = Settings.locations.size == 1 ? false : true
+
     if Settings.multi_location == true
         all_locations = "total"
     else
@@ -144,6 +147,7 @@ class ViewController < ApplicationController
         xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
       },
       tooltips: { mode: 'index', axis: 'x', intersect: false },
+      legend: { display: display_legend },
       animation: { duration: 0 },
       responsive: true,
       maintainAspectRatio: false,
@@ -183,6 +187,7 @@ class ViewController < ApplicationController
         xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
       },
       tooltips: { mode: 'index', axis: 'x', intersect: false },
+      legend: { display: display_legend },
       animation: { duration: 0 },
       responsive: true,
       maintainAspectRatio: false,
@@ -222,6 +227,7 @@ class ViewController < ApplicationController
         xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
       },
       tooltips: { mode: 'index', axis: 'x', intersect: false },
+      legend: { display: display_legend },
       animation: { duration: 0 },
       responsive: true,
       maintainAspectRatio: false,
@@ -261,6 +267,7 @@ class ViewController < ApplicationController
         xAxes: [{ type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM YY' } }, distribution: 'series' }]
       },
       tooltips: { mode: 'index', axis: 'x', intersect: false },
+      legend: { display: display_legend },
       animation: { duration: 0 },
       responsive: true,
       maintainAspectRatio: false,

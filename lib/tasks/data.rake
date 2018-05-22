@@ -55,10 +55,6 @@ namespace :data do
           @dates_hash[date].store(location, [sessions])
         end
 
-        Settings.locations.each do |l|
-          @pubcomp_hash[l.pubcomp_name] = Array.new
-        end
-
         @pubcomp_hash['graphdates'] = Array.new
 
         @dates_hash.each do |d, e|
