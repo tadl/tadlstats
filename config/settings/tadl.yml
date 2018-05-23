@@ -5,6 +5,8 @@ system_longname: "Traverse Area District Library"
 nav_title: "TADL Stats"
 wireless_ssid: "tadl-patron-wireless"
 include_whimsy: true
+logo: "https://www.tadl.org/logo.png"
+show_about: true
 pubcomp_unique_users: true
 item_types: [["audiobooks", "Audiobooks"], ["books", "Books"], ["childrensbooks", "Children's Books"], ["magazines", "Magazines"], ["music", "Music"], ["movies", "Movies"], ["puppets", "Puppets"], ["other", "Other"]]
 stats_url: "https://www.tadl.org/stats/"
@@ -12,8 +14,6 @@ site_title: "TADL Stats | Traverse Area District Library"
 item_details_prefix: "https://catalog.tadl.org/main/details.json?id="
 item_details_link_prefix: "https://catalog.tadl.org/main/details?id="
 cover_image_prefix: "https://catalog.tadl.org/opac/extras/ac/jacket/large/r/"
-logo: "https://www.tadl.org/logo.png"
-show_about: true
 stats:
   - name: "circ_by_type_12months"
     url: "https://www.tadl.org/statsdata/tadl/circ-by-type-12months.csv"
