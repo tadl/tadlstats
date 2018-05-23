@@ -12,12 +12,31 @@ class ViewController < ApplicationController
     @wireless_hash = Rails.cache.read('wireless_weekly')
     @newusers_hash = Rails.cache.read('newusers_weekly')
 
-    display_legend = Settings.locations.size == 1 ? false : true
+    @loc = {}
 
-    if Settings.multi_location == true
-        all_locations = "total"
+    Settings.locations.each do |l|
+      if l.path_name == params[:location]
+        @loc = l
+        @short_name = l.short_name
+        @evergreen_name = l.evergreen_name
+        break
+      else
+        @loc["path_name"] = "all"
+      end
+
+    end
+
+    display_legend = Settings.locations.size == 1 || !params[:location].nil? ? false : true
+
+    if Settings.multi_location == true && params[:location].nil?
+        eg_locations = "total"
+        stat_locations = "total"
+    elsif Settings.multi_location == true && !params[:location].nil?
+        eg_locations = @loc.evergreen_name
+        stat_locations = @loc.short_name
     else
-        all_locations = Settings.system_shortname
+        eg_locations = Settings.system_shortname
+        stat_locations = Settings.system_shortname
     end
 
     # Color definitions for pie/circle graphs
@@ -35,7 +54,7 @@ class ViewController < ApplicationController
     @stats_audio_visual_materials = 0
     @stats_audio_visual_materials_types = []
 
-    @stats_data["collection_size"][all_locations].each do |type, val|
+    @stats_data["collection_size"][eg_locations].each do |type, val|
       @stats_collection_size += val.to_i
 
       if type.include? "book"
@@ -58,7 +77,7 @@ class ViewController < ApplicationController
     @stats_circ_by_type_books = 0
     @stats_circ_by_type_av = 0
 
-    @stats_data["circ_by_type_12months"][all_locations].each do |type, val|
+    @stats_data["circ_by_type_12months"][eg_locations].each do |type, val|
       stats_circ_by_type_graph_data.push(val)
       stats_circ_by_type_graph_labels.push(item_type_map(type))
 
@@ -91,31 +110,31 @@ class ViewController < ApplicationController
     }
 
     # Computer sessions / users (box)
-    @stats_computer_sessions = @stats_data["pubcomp_12months"][all_locations][:sessions]
-    @stats_computer_users = @stats_data["pubcomp_12months"][all_locations][:users]
+    @stats_computer_sessions = @stats_data["pubcomp_12months"][stat_locations][:sessions]
+    @stats_computer_users = @stats_data["pubcomp_12months"][stat_locations][:users]
 
     # Items Circulated (box)
     @stats_items_circulated = 0
 
-    @stats_data["circ_by_type_12months"][all_locations].each do |type, val|
+    @stats_data["circ_by_type_12months"][eg_locations].each do |type, val|
       @stats_items_circulated += val.to_i
     end
 
     if Settings.include_whimsy == true
         # Questions Answered (box)
-        @stats_questions_answered = @stats_data["soft_stat_questions_12months"][all_locations]
+        @stats_questions_answered = @stats_data["soft_stat_questions_12months"]["total"]
 
         # Puppets Circulated (box)
-        @stats_puppets_circulated = @stats_data["circ_by_type_12months"][all_locations]["puppets"]
+        @stats_puppets_circulated = @stats_data["circ_by_type_12months"]["total"]["puppets"]
 
         # Users Registered (box)
-        @stats_new_users = @stats_data["newusers_12months"][all_locations]
+        @stats_new_users = @stats_data["newusers_12months"]["total"]
     end
 
     # Collection Stats (table)
     @stats_collection_stats = @stats_data["collection_size"]
-    @stats_copies_added = @stats_data["copies_added_12months"][all_locations]
-    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][all_locations]
+    @stats_copies_added = @stats_data["copies_added_12months"][eg_locations]
+    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][eg_locations]
 
     # Weekly Circulation (graph)
     @circ_graph = {}
@@ -305,9 +324,9 @@ class ViewController < ApplicationController
 
     end
 
-    if @loc["path_name"].to_s != params[:location].to_s
-      redirect_to view_all_path and return
-    end
+    #if @loc["path_name"].to_s != params[:location].to_s
+    #  redirect_to view_all_path and return
+    #end
 
     # Do all the graphy stuff here and use @loc[.stuff] to filter for a single location
 
