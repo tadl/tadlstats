@@ -31,13 +31,13 @@ class ViewController < ApplicationController
     display_legend = Settings.locations.size == 1 || !params[:location].nil? ? false : true
 
     if Settings.multi_location == true && params[:location].nil?
-        eg_locations = "total"
+        @eg_locations = "total"
         stat_locations = "total"
     elsif Settings.multi_location == true && !params[:location].nil?
-        eg_locations = @loc.evergreen_name
+        @eg_locations = @loc.evergreen_name
         stat_locations = @loc.short_name
     else
-        eg_locations = Settings.system_shortname
+        @eg_locations = Settings.system_shortname
         stat_locations = Settings.system_shortname
     end
 
@@ -56,7 +56,7 @@ class ViewController < ApplicationController
     @stats_audio_visual_materials = 0
     @stats_audio_visual_materials_types = []
 
-    @stats_data["collection_size"][eg_locations].each do |type, val|
+    @stats_data["collection_size"][@eg_locations].each do |type, val|
       @stats_collection_size += val.to_i
 
       if type.include? "book"
@@ -79,7 +79,7 @@ class ViewController < ApplicationController
     @stats_circ_by_type_books = 0
     @stats_circ_by_type_av = 0
 
-    @stats_data["circ_by_type_12months"][eg_locations].each do |type, val|
+    @stats_data["circ_by_type_12months"][@eg_locations].each do |type, val|
       stats_circ_by_type_graph_data.push(val)
       stats_circ_by_type_graph_labels.push(item_type_map(type))
 
@@ -118,7 +118,7 @@ class ViewController < ApplicationController
     # Items Circulated (box)
     @stats_items_circulated = 0
 
-    @stats_data["circ_by_type_12months"][eg_locations].each do |type, val|
+    @stats_data["circ_by_type_12months"][@eg_locations].each do |type, val|
       @stats_items_circulated += val.to_i
     end
 
@@ -135,8 +135,8 @@ class ViewController < ApplicationController
 
     # Collection Stats (table)
     @stats_collection_stats = @stats_data["collection_size"]
-    @stats_copies_added = @stats_data["copies_added_12months"][eg_locations]
-    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][eg_locations]
+    @stats_copies_added = @stats_data["copies_added_12months"][@eg_locations]
+    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][@eg_locations]
 
     # Weekly Circulation (graph)
     @circ_graph = {}

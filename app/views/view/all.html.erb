@@ -237,12 +237,12 @@
               </tr>
             </thead>
             <tbody>
-              <% @stats_collection_stats["total"].each do |k, v| %>
+              <% @stats_collection_stats[@eg_locations].each do |k, v| %>
                 <tr>
                   <td><%= item_type_map(k) %></td>
                   <td><%= number_with_delimiter(v) %></td>
-                  <td><%= number_with_delimiter(@stats_copies_added[k]) %></td>
-                  <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) %></td>
+                  <td><%= number_with_delimiter(@stats_copies_added[k]) || 0 %></td>
+                  <td><%= number_with_delimiter(@stats_copies_withdrawn[k]) || 0 %></td>
                   <% original = v.to_i + @stats_copies_withdrawn[k].to_i - @stats_copies_added[k].to_i %>
                   <% change = v.to_i - original.to_i %>
                   <td><%= "%+.2f" % change.percent_of(original) %>%</td>
