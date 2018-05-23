@@ -101,7 +101,7 @@ class ViewController < ApplicationController
       @stats_items_circulated += val.to_i
     end
 
-    if Settings.multi_location == true
+    if Settings.include_whimsy == true
         # Questions Answered (box)
         @stats_questions_answered = @stats_data["soft_stat_questions_12months"][all_locations]
 
