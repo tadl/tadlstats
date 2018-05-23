@@ -312,4 +312,7 @@ class ViewController < ApplicationController
 
   end
 
+  def about
+  end
+
 end

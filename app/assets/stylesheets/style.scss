@@ -4,6 +4,10 @@
 @import "AdminLTE";
 @import "skins/_all-skins.min";
 
+body {
+  padding: 0 5px;
+}
+
 .panel-fullscreen {
   display: block;
   z-index: 9999;
@@ -81,6 +85,18 @@
   white-space: nowrap;
 }
 
+.logo {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.logo-div {
+  text-align: center;
+}
+
+.about-box {
+  font-size: 18px;
+}
 
 /*==================================================
 =      Bootstrap 3 Media Queries       =
