@@ -13,15 +13,17 @@ class ViewController < ApplicationController
     @newusers_hash = Rails.cache.read('newusers_weekly')
 
     @loc = {}
+    locations = {}
 
     Settings.locations.each do |l|
       if l.path_name == params[:location]
+        @current_locations = [l]
         @loc = l
         @short_name = l.short_name
         @evergreen_name = l.evergreen_name
         break
       else
-        @loc["path_name"] = "all"
+        @current_locations = Settings.locations
       end
 
     end
@@ -41,9 +43,9 @@ class ViewController < ApplicationController
 
     # Color definitions for pie/circle graphs
     chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
-             "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
+                     "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
     chart_halftones = [ "rgba(57,106,177,0.5)", "rgba(218,124,48,0.5)", "rgba(62,150,81,0.5)", "rgba(204,37,41,0.5)",
-              "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
+                        "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
 
     # Collection Size (box + graph)
     @stats_collection_size = 0
@@ -141,9 +143,9 @@ class ViewController < ApplicationController
     @circ_graph[:labels] = @circ_hash['graphdates']
     @circ_graph[:datasets] = []
 
-    Settings.locations.each do |location|
+    @current_locations.each do |location|
       loc = {}
-      fill = (Settings.locations.first == location)? "origin" : "-1"
+      fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
         label: location.short_name,
@@ -181,9 +183,9 @@ class ViewController < ApplicationController
     @wireless_graph[:labels] = @wireless_hash['graphdates']
     @wireless_graph[:datasets] = []
 
-    Settings.locations.each do |location|
+    @current_locations.each do |location|
       loc = {}
-      fill = (Settings.locations.first == location)? "origin" : "-1"
+      fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
         label: location.short_name,
@@ -221,9 +223,9 @@ class ViewController < ApplicationController
     @pubcomp_graph[:labels] = @pubcomp_hash['graphdates']
     @pubcomp_graph[:datasets] = []
 
-    Settings.locations.each do |location|
+    @current_locations.each do |location|
       loc = {}
-      fill = (Settings.locations.first == location)? "origin" : "-1"
+      fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
         label: location.short_name,
@@ -261,9 +263,9 @@ class ViewController < ApplicationController
     @newusers_graph[:labels] = @newusers_hash['graphdates']
     @newusers_graph[:datasets] = []
 
-    Settings.locations.each do |location|
+    @current_locations.each do |location|
       loc = {}
-      fill = (Settings.locations.first == location)? "origin" : "-1"
+      fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
         label: location.short_name,
