@@ -9,14 +9,14 @@
       <div class="box-body about-box">
         <div class="row">
           <div class="col-xs-12 col-md-8 col-lg-9">
-            <p>This dashboard was developed in-house by <a href="https://www.tadl.org/">Traverse Area District Library</a>. Originally launched in February 2013, the TADL statistics dashboard has been a convenient way for library fans, patrons and staff alike to quickly access key information about the collection and resource utilization. </p>
+            <p>This dashboard was developed in-house by <a href="https://www.tadl.org/">Traverse Area District Library</a>. Originally launched in February 2013, the TADL statistics dashboard has been a convenient tool for library fans, patrons and staff alike to quickly access key information about the collection and resource utilization. This 2018 update brings improved usability (mobile first design) and a more maintainable platform.</p>
             <p>All the data represented on this dashboard is gathered by performing SQL queries against several different data sources. Circulation and collection statistics are retrieved from the <a href="http://evergreen-ils.org/">Evergreen ILS</a>, public computing data is stored by <a href="https://www.envisionware.com/pcres/">Envisionware PC Reservation</a>, and wireless statistics are logged to syslog servers, which are then processed and inserted into a postgresql database to allow queries about specific locations or networks. All this data is then exported to <abbr title="Comma-separated Values">CSV</abbr> format, which is retrieved and cached periodically by the app to provide a smooth user experience.</p>
             <p>A variety of open source software was used to develop this app, including:</p>
             <ul>
               <li><a href="http://www.chartjs.org/">Chart.js</a>, used to create charts and graphs.</li>
               <li><a href="https://getbootstrap.com/">Bootstrap</a>, a CSS and javascript library which simplifies layout creation.</li>
               <li><a href="https://github.com/almasaeed2010/AdminLTE">AdminLTE</a>, a Bootstrap-based admin theme template that provides widgets and additional styles.</li>
-              <li>All of this runs <a href="https://rubyonrails.org/">Ruby on Rails</a>, a common application framework.</li>
+              <li><a href="https://rubyonrails.org/">Ruby on Rails</a>, a common application framework.</li>
             </ul>
             <p>This web application is always a work in progress. Our intent is to regularly add more interesting bits of information as patrons and staff request them.</p>
             <p>The TADL Technology department does everything it can to share code so others can benefit when possible and this is no exception. You can find the code used to run this application <a href="https://github.com/tadl/tadlstats">on GitHub</a>. If you have questions about this (or other) TADL Tech projects, please feel free to <a href="mailto:tech@tadl.org">contact us</a> and we will try to answer them. Thanks!</p>
@@ -25,16 +25,16 @@
             <div class="logo-div">
               <img src="<%= Settings.logo %>" alt="logo" class="logo" />
             </div>
-            <div class="box box-primary box-solid">
+            <div class="box box-primary">
               <div class="box-header">
                 <h3 class="box-title">Data last retrieved</h3>
               </div>
               <div class="box-body">
                 <div class="row">
                   <div class="col-xs-12">
-                    <div class="small clear-both pull-right">Graphs: <%= @graphs_updated.to_time.strftime('%B %e at %l:%M %p') %></div>
-                    <div class="small clear-both pull-right">Lists: <%= @lists_updated.to_time.strftime('%B %e at %l:%M %p') %></div>
-                    <div class="small clear-both pull-right">Numbers: <%= @stats_updated.to_time.strftime('%B %e at %l:%M %p') %></div>
+                    <div class="small">Graphs: <%= @graphs_updated.to_time.strftime('%B %e at %l:%M %p') %></div>
+                    <div class="small">Lists: <%= @lists_updated.to_time.strftime('%B %e at %l:%M %p') %></div>
+                    <div class="small">Numbers: <%= @stats_updated.to_time.strftime('%B %e at %l:%M %p') %></div>
                   </div>
                 </div>
               </div>
