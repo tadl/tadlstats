@@ -231,6 +231,7 @@ namespace :data do
           if !@statsdata[file].key?(loc)
             @statsdata[file][loc] = Hash.new
           end
+
           @statsdata[file][loc].store(type, count)
         end
 
