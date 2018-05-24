@@ -313,6 +313,9 @@ class ViewController < ApplicationController
   end
 
   def about
+    @graphs_updated = Rails.cache.read('graphs_updated')
+    @lists_updated = Rails.cache.read('lists_updated')
+    @stats_updated = Rails.cache.read('stats_updated')
   end
 
 end

@@ -88,14 +88,18 @@ body {
 .logo {
   width: 100%;
   max-width: 320px;
-  margin: 0 auto;
 }
 .logo-div {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .about-box {
   font-size: 18px;
+}
+
+.clear-both {
+  clear: both;
 }
 
 /*==================================================
