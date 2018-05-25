@@ -21,9 +21,6 @@ class ViewController < ApplicationController
         @loc = l
         @short_name = l.short_name
         @evergreen_name = l.evergreen_name
-        @circ_label = "Circulations"
-        @sessions_label = "Sessions"
-        @users_label = "Users"
         break
       else
         @current_locations = Settings.locations
@@ -39,9 +36,15 @@ class ViewController < ApplicationController
     elsif Settings.multi_location == true && !params[:location].nil?
         @eg_locations = @loc.evergreen_name
         stat_locations = @loc.short_name
+        @circ_label = "Circulations"
+        @sessions_label = "Sessions"
+        @users_label = "Users"
     else
         @eg_locations = Settings.system_shortname
         stat_locations = Settings.system_shortname
+        @circ_label = "Circulations"
+        @sessions_label = "Sessions"
+        @users_label = "Users"
     end
 
     # Color definitions for pie/circle graphs
