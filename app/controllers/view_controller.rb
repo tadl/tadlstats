@@ -21,6 +21,9 @@ class ViewController < ApplicationController
         @loc = l
         @short_name = l.short_name
         @evergreen_name = l.evergreen_name
+        @circ_label = "Circulations"
+        @sessions_label = "Sessions"
+        @users_label = "Users"
         break
       else
         @current_locations = Settings.locations
@@ -148,7 +151,7 @@ class ViewController < ApplicationController
       fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
-        label: location.short_name,
+        label: @circ_label.nil? ? location.short_name : @circ_label,
         backgroundColor: location.background_color,
         borderColor: location.border_color,
         data: @circ_hash[location.evergreen_name],
@@ -188,7 +191,7 @@ class ViewController < ApplicationController
       fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
-        label: location.short_name,
+        label: @sessions_label.nil? ? location.short_name : @sessions_label,
         backgroundColor: location.background_color,
         borderColor: location.border_color,
         data: @wireless_hash[location.short_name],
@@ -228,7 +231,7 @@ class ViewController < ApplicationController
       fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
-        label: location.short_name,
+        label: @sessions_label.nil? ? location.short_name : @sessions_label,
         backgroundColor: location.background_color,
         borderColor: location.border_color,
         data: @pubcomp_hash['sessions'][location.pubcomp_name],
@@ -268,7 +271,7 @@ class ViewController < ApplicationController
       fill = (@current_locations.first == location)? "origin" : "-1"
 
       loc = {
-        label: location.short_name,
+        label: @users_label.nil? ? location.short_name : @users_label,
         backgroundColor: location.background_color,
         borderColor: location.border_color,
         data: @newusers_hash[location.evergreen_name],
