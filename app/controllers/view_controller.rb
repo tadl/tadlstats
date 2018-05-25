@@ -48,10 +48,26 @@ class ViewController < ApplicationController
     end
 
     # Color definitions for pie/circle graphs
-    chart_colors = [ "rgba(57,106,177,1)", "rgba(218,124,48,1)", "rgba(62,150,81,1)", "rgba(204,37,41,1)",
-                     "rgba(107,76,154,1)", "rgba(83,81,84,1)", "rgba(146,36,40,1)", "rgba(148,139,61,1)" ]
-    chart_halftones = [ "rgba(57,106,177,0.5)", "rgba(218,124,48,0.5)", "rgba(62,150,81,0.5)", "rgba(204,37,41,0.5)",
-                        "rgba(107,76,154,0.5)", "rgba(83,81,84,0.5)", "rgba(146,36,40,0.5)", "rgba(148,139,61,0.5)" ]
+    chart_colors = [
+      "rgba(57,106,177,1)",
+      "rgba(218,124,48,1)",
+      "rgba(62,150,81,1)",
+      "rgba(204,37,41,1)",
+      "rgba(107,76,154,1)",
+      "rgba(83,81,84,1)",
+      "rgba(146,36,40,1)",
+      "rgba(148,139,61,1)",
+    ]
+    chart_halftones = [
+      "rgba(57,106,177,0.5)",
+      "rgba(218,124,48,0.5)",
+      "rgba(62,150,81,0.5)",
+      "rgba(204,37,41,0.5)",
+      "rgba(107,76,154,0.5)",
+      "rgba(83,81,84,0.5)",
+      "rgba(146,36,40,0.5)",
+      "rgba(148,139,61,0.5)",
+    ]
 
     # Collection Size (box + graph)
     @stats_collection_size = 0
