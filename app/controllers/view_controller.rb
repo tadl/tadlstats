@@ -31,17 +31,17 @@ class ViewController < ApplicationController
     display_legend = Settings.locations.size == 1 || !params[:location].nil? ? false : true
 
     if Settings.multi_location == true && params[:location].nil?
-        @eg_locations = "total"
-        stat_locations = "total"
+        @eg_location = "total"
+        stat_location = "total"
     elsif Settings.multi_location == true && !params[:location].nil?
-        @eg_locations = @loc.evergreen_name
-        stat_locations = @loc.short_name
+        @eg_location = @loc.evergreen_name
+        stat_location = @loc.short_name
         @circ_label = "Circulations"
         @sessions_label = "Sessions"
         @users_label = "Users"
     else
-        @eg_locations = Settings.system_shortname
-        stat_locations = Settings.system_shortname
+        @eg_location = Settings.system_shortname
+        stat_location = Settings.system_shortname
         @circ_label = "Circulations"
         @sessions_label = "Sessions"
         @users_label = "Users"
@@ -78,7 +78,7 @@ class ViewController < ApplicationController
     @stats_audio_visual_materials = 0
     @stats_audio_visual_materials_types = []
 
-    @stats_data["collection_size"][@eg_locations].each do |type, val|
+    @stats_data["collection_size"][@eg_location].each do |type, val|
       @stats_collection_size += val.to_i
 
       if type.include? "book"
@@ -101,7 +101,7 @@ class ViewController < ApplicationController
     @stats_circ_by_type_books = 0
     @stats_circ_by_type_av = 0
 
-    @stats_data["circ_by_type_12months"][@eg_locations].each do |type, val|
+    @stats_data["circ_by_type_12months"][@eg_location].each do |type, val|
       stats_circ_by_type_graph_data.push(val)
       stats_circ_by_type_graph_labels.push(item_type_map(type))
 
@@ -134,13 +134,13 @@ class ViewController < ApplicationController
     }
 
     # Computer sessions / users (box)
-    @stats_computer_sessions = @stats_data["pubcomp_12months"][stat_locations][:sessions]
-    @stats_computer_users = @stats_data["pubcomp_12months"][stat_locations][:users]
+    @stats_computer_sessions = @stats_data["pubcomp_12months"][stat_location][:sessions]
+    @stats_computer_users = @stats_data["pubcomp_12months"][stat_location][:users]
 
     # Items Circulated (box)
     @stats_items_circulated = 0
 
-    @stats_data["circ_by_type_12months"][@eg_locations].each do |type, val|
+    @stats_data["circ_by_type_12months"][@eg_location].each do |type, val|
       @stats_items_circulated += val.to_i
     end
 
@@ -157,8 +157,8 @@ class ViewController < ApplicationController
 
     # Collection Stats (table)
     @stats_collection_stats = @stats_data["collection_size"]
-    @stats_copies_added = @stats_data["copies_added_12months"][@eg_locations]
-    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][@eg_locations]
+    @stats_copies_added = @stats_data["copies_added_12months"][@eg_location]
+    @stats_copies_withdrawn = @stats_data["copies_withdrawn_12months"][@eg_location]
 
     # Weekly Circulation (graph)
     @circ_graph = {}

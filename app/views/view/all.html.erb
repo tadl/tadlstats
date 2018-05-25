@@ -237,7 +237,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @stats_collection_stats[@eg_locations].each do |k, v| %>
+              <% @stats_collection_stats[@eg_location].each do |k, v| %>
                 <tr>
                   <td><%= item_type_map(k) %></td>
                   <td><%= number_with_delimiter(v) %></td>
