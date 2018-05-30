@@ -179,8 +179,10 @@ namespace :data do
           response = JSON.parse(open(detailurl + id).read)
 
           if response['author'].include? ","
-            authortmp = response['author'].split(", ")
+            authortmp = response['author'].split(",")
+            authortmp[1].gsub!(/\.$/, '')
             author = authortmp[1] + " " + authortmp[0]
+            author.gsub!(/^\s/, '')
           else
             author = response['author']
           end
