@@ -351,10 +351,16 @@ namespace :data do
       if file == "wireless_12months"
         csv.each do |row|
           loc, count, devices = row
+
           if !@statsdata[file].key?(loc)
             @statsdata[file][loc] = Hash.new
           end
-          @statsdata[file][loc].store(count, devices)
+
+          @statsdata[file].store(loc, {:sessions => count, :devices => devices})
+        end
+
+        if @statsdata[file].key?("tadl")
+          @statsdata[file]["total"] = @statsdata[file]["tadl"]
         end
 
       end

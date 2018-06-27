@@ -15,7 +15,7 @@
       <div class="info-box-content">
         <span class="info-box-text">Computer Sessions</span>
         <span class="info-box-number"><%= number_with_delimiter(@stats_computer_sessions) %> <small>past 12 months</small></span>
-        <% if Settings.pubcomp_unique_users == true %><p>by <b><%= number_with_delimiter(@stats_computer_users) %></b> unique users</p><% end %>
+        <% if Settings.pubcomp_unique_users == true %><p>by <strong><%= number_with_delimiter(@stats_computer_users) %></strong> unique users</p><% end %>
       </div>
     </div>
   </div>
@@ -24,8 +24,8 @@
       <span class="info-box-icon bg-yellow"><i class="fa fa-wifi"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">Wireless Sessions</span>
-        <span class="info-box-number">nil <small>past 12 months</small></span>
-        <p>SSID <code><%= Settings.wireless_ssid %></code></p>
+        <span class="info-box-number"><%= number_with_delimiter(@stats_wireless_sessions) %> <small>past 12 months</small></span>
+        <p>on <strong><%= number_with_delimiter(@stats_wireless_devices) %></strong> devices</p>
       </div>
     </div>
   </div>

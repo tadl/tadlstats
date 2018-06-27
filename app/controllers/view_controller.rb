@@ -137,6 +137,10 @@ class ViewController < ApplicationController
     @stats_computer_sessions = @stats_data["pubcomp_12months"][stat_location][:sessions]
     @stats_computer_users = @stats_data["pubcomp_12months"][stat_location][:users]
 
+    # Wireless sessions / devices (box)
+    @stats_wireless_sessions = @stats_data["wireless_12months"][stat_location][:sessions]
+    @stats_wireless_devices = @stats_data["wireless_12months"][stat_location][:devices]
+
     # Items Circulated (box)
     @stats_items_circulated = 0
 
