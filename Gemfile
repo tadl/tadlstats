@@ -7,7 +7,7 @@ gem 'rails', '~> 5.2.0'
 gem 'unicorn'
 gem 'config'
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '>= 3.4.1'
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'chartjs-ror'
