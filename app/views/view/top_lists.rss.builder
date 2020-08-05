@@ -3,7 +3,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title "Traverse Area District Library - Top Ten " + @list_name
     xml.description "The top ten " + @list_name.downcase + ' checked out from Traverse Area District Library in the last 30 days'
-    xml.link root_url
+    xml.link 'https://www.tadl.org'
     xml.image :url => 'https://www.tadl.org/wp-content/uploads/2016/06/logo-horizontal-web-e1468248675904.png', :title => 'Traverse Area District Library', :link => "https://www.tadl.org" 
     if @list_name == 'Books'
       @list.each do |item|
