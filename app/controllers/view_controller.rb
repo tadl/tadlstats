@@ -3,6 +3,7 @@ include ApplicationHelper
 class ViewController < ApplicationController
   require "open-uri"
   require "csv"
+  require 'net/http'
 
   def all
     @stats_data = Rails.cache.read('stats_data')
@@ -361,6 +362,34 @@ class ViewController < ApplicationController
     @graphs_updated = Rails.cache.read('graphs_updated')
     @lists_updated = Rails.cache.read('lists_updated')
     @stats_updated = Rails.cache.read('stats_updated')
+  end
+
+  def top_lists
+    @topten = Rails.cache.read("topten")
+    if params[:type]
+      @list_name = params[:type].capitalize
+    else
+      @list_name = 'Books'
+    end
+    @list = []
+    @topten[@list_name].each do |i|
+      item = {}
+      item['id'] = i[0]
+      item['title'] = i[1][:title]
+      item['author'] = i[1][:author]
+      item['year'] = i[1][:year]
+      item['cover'] = 'http://catalog.tadl.org/opac/extras/ac/jacket/large/r/' + i[0]   
+      item['link'] = 'https://catalog.tadl.org/main/details?id=' + i[0]
+      item['abstract'] = i[1][:abstract]
+      item['contents'] = i[1][:contents]
+      item['circs_in_last_30'] = i[1][:count]
+      @list.push(item)
+    end
+
+    respond_to do |format|
+      format.json { render json: @list }
+      format.rss {render :layout => false}
+    end
   end
 
 end
