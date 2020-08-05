@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
         xml.description item['abstract']
         xml.link item['link']
         xml.guid item['link']
-        xml.enclosure :url=> item['cover'], :length=> 500, :type => 'img\jpg'
+        xml.enclosure :url=> item['cover'], :length=> 500, :type => 'image/jpg'
       end
     end
   end
